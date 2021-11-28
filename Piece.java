@@ -4,14 +4,33 @@ public class Piece {
     private int yCord;
     private int xCord;
     private char color;
-    private char type;
+    private String type;
 
-    public Piece (int inputyCord, int inputxCord, char pieceColor, char pieceType){
+    public Piece (int inputyCord, int inputxCord, char pieceColor, String pieceType){
+
+        /**
+         * This assumes that the object initializer includes the coordinates of the piece
+         * As well as the color and type of the piece
+         * Assumed format for piece traits is (row number, column number, piece color, piece type)
+         */
 
         yCord = inputyCord;
         xCord = inputxCord;
         color = pieceColor;
         type = pieceType;
+
+        //Ascension process assumes that red starts on the top, and black starts on the bottom
+        if (color == 'R' && yCord == 7 && type.equals("man")){
+
+            type = "king";
+
+        }
+
+        if (color == 'B' && yCord == 0 && type.equals("man")){
+
+            type = "king";
+
+        }
 
     }
 
@@ -33,10 +52,11 @@ public class Piece {
 
     }
     
-    public int get_pieceType(){
+    public String get_pieceType(){
 
         return type;
 
     }
 
 }
+
