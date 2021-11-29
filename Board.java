@@ -19,6 +19,46 @@ public class Board {
         this.grid[posX][posY] = value;
     }
 
+    public boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+      
+      // Checks if the move made is on the board
+      if (newPosX < 1 || newPosX > 8 || newPosY < 1 || newPosY > 8) {
+        return false;
+      }
+            
+      // Checks if the move made is diagonal of the current position
+      int xDifference = Math.abs(posX - newPosX);
+      int yDifference = Math.abs(posY - newPosY);
+      if (xDifference != 1 || yDifference != 1) {
+        return false;
+      }
+      
+      // Checks if the move made is forward (unless the piece is a royal)
+      if (type == "man") {
+        if (colour == "black") {
+          if (newPosY - posY != 1) {
+            return false;
+          }
+        }
+        else if (colour == "red") {
+          if (posY - newPosY != 1) {
+            return false;
+          }
+        }
+      }
+      
+      // Checks if new position isn't already taken by another piece
+      if (Character.toString(grid[newPosX][newPosY]) != " ") {
+        return false;
+      }
+      
+      return true;
+    }
+    
+    private boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+      return false;
+    }
+    
     public void update() {
         System.out.println("------------------------");
         for(int i = 0; i < this.grid.length; i++) {
