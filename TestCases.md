@@ -2,7 +2,7 @@
 
 # Test cases for piece moving: 
 
-### Regular moving:
+### Regular moving and piece input:
 
 1. Move pieces out of the board, from the left, right, up, top. Sample cases: Move from (0, 1) to (-1, 0)
       
@@ -28,6 +28,11 @@
 	-> Should have no issues. 
 	
 ##### All of the cases should be tested with both Red and Black pieces.
+### Input from Console:
+
+1. Make sure something out of the format is still considered invalid and doesn't cause any bugs.
+2. No errors pop up when entering correct format
+3. Make sure the instructions are clear.
 
 ### Captures:
 
