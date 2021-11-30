@@ -23,27 +23,21 @@ public class Piece {
         if (color == 'R' && yCord == 7 && type.equals("man")){
 
             type = "king";
-
         }
 
         if (color == 'B' && yCord == 0 && type.equals("man")){
 
             type = "king";
-
         }
 
     }
 
     public int get_yCord(){
-
         return yCord;
-
     }
 
     public int get_xCord(){
-
         return xCord;
-
     }
 
     public char get_pieceColor(){
