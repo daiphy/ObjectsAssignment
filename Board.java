@@ -48,6 +48,7 @@ public class Board {
       }
       
       // Checks if new position isn't already taken by another piece
+
       if (grid[newPosX][newPosY] != ' ') {
         return false;
       }
@@ -56,9 +57,6 @@ public class Board {
     }
     
     private boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
-      
-      
-      
       return false;
     }
     
