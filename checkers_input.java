@@ -11,27 +11,26 @@ public class checkers_input{
                 System.out.println("in the format (x,y);(x,y)");
 
                 string=s.nextLine();
-                //for (int i=0;i<string.length();i++){
-                    String[] c=string.split(";",0);
-                    for (int i=0;i<c.length;i++){
-                        System.out.println(c[i]);
+                String[] b=string.split(";",2);
+                for (int z=0;z<b.length;z++){
+                    String[] c=b[z].split(",",3);
+
+                        for (int y=0;y<c.length;y++){
+                        
+                            if(c[y]!="("||c[y]!=")"){
+                                a[x]=c[y].charAt(y);
+                            }
+                        //System.out.println(c[y]);
+                        }
                 }
-                    //if (string.charAt(i)==(','){
-                       // a[0]=string.charAt(index-1);
-                        //a[0]=f.parseInt();
-                   // }
-               // }                
+            
+//(1,1);(2,2)              
             ask=placeholder(a);
         }while(ask);
         s.close();
         return a;
     }
     public static boolean placeholder(char[] array){
-
-        for (int i=0;i<4l;i++)
-            if (array[i]>10||array[0]<0){
-                return true;
-        }        
         return false;
     }
 }
