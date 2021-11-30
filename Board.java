@@ -48,7 +48,8 @@ public class Board {
       }
       
       // Checks if new position isn't already taken by another piece
-      if (Character.toString(grid[newPosX][newPosY]) != " ") {
+
+      if (grid[newPosX][newPosY] != ' ') {
         return false;
       }
       
