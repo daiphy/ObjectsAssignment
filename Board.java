@@ -57,7 +57,48 @@ public class Board {
     }
     
     private boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+
+      int x1 = posX+1;
+      int y1 = posY+1;
+      int x2 = posX+2;
+      int y2 = posY+2;
+
+      if (newPosX == x2 || newPosY == y2){
+      // kill can not be made if the second coords inputted are off board
+      if (x2 < 0 || x2 >= 8 || y2 < 0 || y2 >= 8){
+        return false;
+      }
+      // (x2,y2) has another piece there
+      if (grid[x2][y2] != 'r' || grid[x2][y2] != 'R' || grid[x2][y2] != 'B' ||grid[x2][y2] != 'B'){
+        return false;
+      }
+      // only applies to red pieces
+      if (colour.equals("red")){
+        // piece can not move down (can only move up)
+        if ((grid[posX][posY] == 'r' || grid[posX][posY] == 'R') && x2 > posX){
+          return false;
+        }
+        // no black pieces to jump over
+        if (grid[x1][y1] == 'b' || grid[x1][y1] == 'B'){
+          return false;
+        }
+        return true;
+      }
+      // only applies to black pieces
+      else{
+        // piece can not move up (can only move down)
+        if ((grid[posX][posY] == 'b' || grid[posX][posY] == 'B') && x2 < posX){
+          return false;
+        }
+        // no red pieces to jump over
+        if (grid[x1][y1] == 'r' || grid[x1][y1] == 'R'){
+          return false;
+        }
+        return true;
+        }
+      }
       return false;
+          
     }
     
     public void update() {
