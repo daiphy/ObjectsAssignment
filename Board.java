@@ -81,8 +81,6 @@ public class Board {
       return true;
     }
 
-    // it wont push
-
     public void makeMove(int x1, int y1, int x2, int y2, String player, String type){
       if (canMoveBeMade(x1, y1, x2, y2, player, type)){
         // removing the enemy piece when the player has legally jumped over it
@@ -95,10 +93,9 @@ public class Board {
             grid[eliminatedRow][eliminatedCol] = ' ';
           }
           else {
-            System.out.println("Sorry this capture is not legal. Please enter a different play.");
+            System.out.println("Sorry the capture is illegal. Please input another play.");
           }
         }
-        // moving the piece
         grid[x2][y2] = grid[x1][y1];
         grid[x1][y1] = ' ';
         // royal ascension
@@ -110,7 +107,7 @@ public class Board {
         }
       }
       else {
-        System.out.println("Sorry this move is not legal. Please enter a different play.");
+        System.out.println("Sorry the move is illegal. Please input another play.");
       }
     }
     
