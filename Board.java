@@ -39,8 +39,8 @@ public class Board {
     public void changeBoard(int posX, int posY, char value) {
         this.grid[posX][posY] = value;
     }
-//private method that checks for if a regular move (not capture can be made)
-    private boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+
+    public boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
       
       // isnt the boad gonna be from 0-7 cuz we're counting coding mode?
       // if (newPosX < 0 || newPosX >= 8 || newPosY < 0 || newPosY >= 8){
@@ -59,29 +59,33 @@ public class Board {
       }
       
       // Checks if the move made is forward (unless the piece is a royal)
-      //inverse for red and black, as red can only move from top to bottom and vice versa.
-      if (type.equals("man") && colour.equals("black") && newPosY - posY != 1) {
+      if (type == "man") {
+        if (colour == "black") {
+          if (newPosY - posY != 1) {
             return false;
-      }
-      else if (type.equals("man") && colour.equals("red") && posY - newPosY != 1) {
+          }
+        }
+        else if (colour == "red") {
+          if (posY - newPosY != 1) {
             return false;
+          }
+        }
       }
-      
       
       // Checks if new position isn't already taken by another piece
 
       if (grid[newPosX][newPosY] != ' ') {
         return false;
       }
-      //default return true.
+      
       return true;
     }
 
     public void makeMove(int x1, int y1, int x2, int y2, String player, String type){
       if (canMoveBeMade(x1, y1, x2, y2, player, type)){
-        if (canCaptureBeMade(x1, y1, x2, y2, player, type)){
-          // removing the enemy piece when the player has legally jumped over it
-          if ( x1 - x2 == 2 || x1 - x2 == -2){
+        // removing the enemy piece when the player has legally jumped over it
+        if ( x1 - x2 == 2 || x1 - x2 == -2){
+          if (canCaptureBeMade(x1, y1, x2, y2, player, type)){
             // row of the piece that needs to be eliminated
             int eliminatedRow = (x1 + x2) / 2;
             // column of the piece that needs to be eliminated
@@ -135,6 +139,7 @@ public class Board {
           if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
             return false;
           }
+          // return true;
           capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
         }
         // only applies to black pieces
@@ -153,17 +158,6 @@ public class Board {
       return false;
           
     }
-    // the public method that will be called when a move is made, if both methods return false then the move is illegal
-    public boolean checkMove(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
-      if (canMoveBeMade(posX, posY, newPosX, newPosY, colour, type) == false && 
-          canCaptureBeMade(posX, posY, newPosX, newPosY, colour, type) == false) {
-        return false;
-      }
-      else {
-        return true;
-      }
-    }
-    
     public void update() {
         System.out.println("------------------------");
         for(int i = 0; i < this.grid.length; i++) {
