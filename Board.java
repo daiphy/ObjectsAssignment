@@ -81,6 +81,8 @@ public class Board {
       return true;
     }
 
+    // it wont push
+
     public void makeMove(int x1, int y1, int x2, int y2){
       grid[x2][y2] = grid[x1][y1];
       grid[x1][y1] = ' ';
