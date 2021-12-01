@@ -23,7 +23,7 @@ public class Board {
     private boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
       
       // Checks if the move made is on the board
-      if (newPosX < 0 || newPosX >= 8 || newPosY < 0 || newPosY >= 8) {
+      if (newPosX < 1 || newPosX > 8 || newPosY < 1 || newPosY > 8) {
         return false;
       }
             
@@ -55,10 +55,10 @@ public class Board {
     
     private boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
 
-      int x1 = posX + 1;
-      int y1 = posY + 1;
-      int x2 = posX + 2;
-      int y2 = posY + 2;
+      int x1 = posX+1;
+      int y1 = posY+1;
+      int x2 = posX+2;
+      int y2 = posY+2;
 
       if (newPosX == x2 || newPosY == y2){
       // kill can not be made if the second coords inputted are off board
