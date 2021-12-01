@@ -105,6 +105,55 @@ public class Board {
       }
     }
     
+        public void findForceCaptures() {
+      for (int i=0; i<grid.length; i++) {
+        for (int e=0; e<grid[i].length; e++) {
+          
+          char piece = grid[i][e];
+          System.out.println(piece);
+          
+          // Execeutes if the piece is red
+          if (piece == 'r' || piece == "R") {
+ 
+            if (i + 2 <= 7 && e - 2 >= 0) {
+              char emptyPiece = grid[i + 2][e - 2];
+              char enemyPiece = grid[i + 1][e - 1];
+              if (emptyPiece == ' ') {
+                if (enemyPiece == 'b' || enemyPiece == 'B') {
+                  System.out.println("Force take");
+                }
+              }
+            }
+            
+            if (i + 2 <= 7 && e + 2 <= 7) {
+              char emptyPiece = grid[i + 2][e + 2];
+              char enemyPiece = grid[i + 1][e + 1];
+              if (emptyPiece == ' ') {
+                if (enemyPiece == 'b' || enemyPiece == 'B') {
+                  System.out.println("Force take");
+                }
+              }
+            }
+            
+            if (piece == 'R') {
+              
+              if (i - 2 >= 0 && e - 2 >= 0) {
+               
+              }
+              
+            }
+            
+  
+          }
+          
+          // Execeutes if the piece is a regular black piece
+          else if (piece == 'b') {
+          
+          }
+        }
+      }
+    }
+    
     private boolean canCaptureBeMade(int x1, int y1, int newPosX, int newPosY, String colour, String type) {
 
       int x2 = x1+1;
