@@ -14,16 +14,16 @@ public class Board {
             }
         }
     }
-//might add on to this, very rough way to change values
+    
+    //might add on to this, very rough way to change values
     public void changeBoard(int posX, int posY, char value) {
         this.grid[posX][posY] = value;
     }
-//private method that checks for if a regular move (not capture can be made)
 
-    private boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+    public boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
       
       // Checks if the move made is on the board
-      if (newPosX < 0 || newPosX >= 8 || newPosY < 0 || newPosY >= 8) {
+      if (newPosX < 0 || newPosX > 7 || newPosY < 0 || newPosY > 7) {
         return false;
       }
             
@@ -35,30 +35,50 @@ public class Board {
       }
       
       // Checks if the move made is forward (unless the piece is a royal)
-      //inverse for red and black, as red can only move from top to bottom and vice versa.
-      if (type.equals("man") && colour.equals("black") && newPosY - posY != 1) {
+      if (type == "man") {
+        if (colour == "black") {
+          if (newPosY - posY != 1) {
             return false;
-      }
-      else if (type.equals("man") && colour.equals("red") && posY - newPosY != 1) {
+          }
+        }
+        else if (colour == "red") {
+          if (posY - newPosY != 1) {
             return false;
+          }
+        }
       }
-      
       
       // Checks if new position isn't already taken by another piece
-
       if (grid[newPosX][newPosY] != ' ') {
         return false;
       }
-      //default return true.
+      
       return true;
     }
     
+    /*
+    public void findForceCaptures() {
+      for (int i=0; i<grid.length; i++) {
+        for (int e=0; e<grid[i].length; e++) {
+          
+          char piece = grid[i][e];
+          
+          if (String.valueOf(piece).equals("r")) {
+            System.out.println(true);
+          }
+          
+          System.out.println(grid[i][e]);
+        }
+      }
+    }
+    */
+    
     private boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
 
-      int x1 = posX + 1;
-      int y1 = posY + 1;
-      int x2 = posX + 2;
-      int y2 = posY + 2;
+      int x1 = posX+1;
+      int y1 = posY+1;
+      int x2 = posX+2;
+      int y2 = posY+2;
 
       if (newPosX == x2 || newPosY == y2){
       // kill can not be made if the second coords inputted are off board
@@ -96,16 +116,6 @@ public class Board {
       }
       return false;
           
-    }
-    // the public method that will be called when a move is made, if both methods return false then the move is illegal
-    public boolean checkMove(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
-      if (canMoveBeMade(posX, posY, newPosX, newPosY, colour, type) == false && 
-          canCaptureBeMade(posX, posY, newPosX, newPosY, colour, type) == false) {
-        return false;
-      }
-      else {
-        return true; //legal move
-      }
     }
     
     public void update() {
