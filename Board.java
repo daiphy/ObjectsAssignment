@@ -3,9 +3,10 @@
  * the methods to update and display the basic grid.
  */
 public class Board {
-    //the grid is private
+    //the grid and turn mode is private
     private char[][] grid = new char[8][8];
-
+    private boolean isBlackTurn = true;
+    
     public Board() {
         //init constructor, temporairly all spaces, might add initial grid spaces later 
         for(int i = 0; i < this.grid.length; i++) {
@@ -20,7 +21,7 @@ public class Board {
         this.grid[posX][posY] = value;
     }
 
-    public boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+    private boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
       
       // Checks if the move made is on the board
       if (newPosX < 0 || newPosX > 7 || newPosY < 0 || newPosY > 7) {
@@ -118,6 +119,19 @@ public class Board {
           
     }
     
+    public boolean checkMove(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+      if (canMoveBeMade(posX, posY, newPosX, newPosY, colour, type) == false && 
+          canCaptureBeMade(posX, posY, newPosX, newPosY, colour, type) == false) {
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
+    
+    public void swapTurns() {
+      this.isBlackTurn = !this.isBlackTurn;
+    }
     public void update() {
         System.out.println("------------------------");
         for(int i = 0; i < this.grid.length; i++) {
