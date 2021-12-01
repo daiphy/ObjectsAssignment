@@ -22,33 +22,30 @@ public class Piece {
         //Ascension process assumes that red starts on the top, and black starts on the bottom
         if (color == 'R' && yCord == 7 && type.equals("man")){
 
-            type = "king";
+            this.type = "king";
         }
 
         if (color == 'B' && yCord == 0 && type.equals("man")){
 
-            type = "king";
+            this.type = "king";
         }
 
     }
 
     public int get_yCord(){
-        return yCord;
+        return this.yCord;
     }
 
     public int get_xCord(){
-        return xCord;
+        return this.xCord;
     }
 
     public char get_pieceColor(){
-
-        return color;
+        return this.color;
 
     }
-    
     public String get_pieceType(){
-
-        return type;
+        return this.type;
 
     }
 
