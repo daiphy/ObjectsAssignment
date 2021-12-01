@@ -1,10 +1,10 @@
 public class Piece {
     
     // Fields
-    private int yCord;
-    private int xCord;
-    private char color;
-    private String type;
+    protected int yCord;
+    protected int xCord;
+    protected char color;
+    protected String type;
 
     public Piece (int inputyCord, int inputxCord, char pieceColor, String pieceType){
 
