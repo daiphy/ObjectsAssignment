@@ -47,7 +47,7 @@ public class Input{
             
 //(1,1);(2,2)              
             ask=placeholder(array);
-        }while(ask);
+        }while(ask); //Loop will exit once the move is validated
         s.close();
         return array;
     }
