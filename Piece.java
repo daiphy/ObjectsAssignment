@@ -19,36 +19,36 @@ public class Piece {
         color = pieceColor;
         type = pieceType;
 
+<<<<<<< HEAD
+=======
         //Ascension process assumes that red starts on the top, and black starts on the bottom
         if (color == 'R' && yCord == 7 && type.equals("man")){
 
-            type = "king";
+            this.type = "king";
         }
 
         if (color == 'B' && yCord == 0 && type.equals("man")){
 
-            type = "king";
+            this.type = "king";
         }
 
+>>>>>>> b74ab77a1493b98886ec995c51e768f61901df68
     }
 
     public int get_yCord(){
-        return yCord;
+        return this.yCord;
     }
 
     public int get_xCord(){
-        return xCord;
+        return this.xCord;
     }
 
     public char get_pieceColor(){
-
-        return color;
+        return this.color;
 
     }
-    
     public String get_pieceType(){
-
-        return type;
+        return this.type;
 
     }
 
