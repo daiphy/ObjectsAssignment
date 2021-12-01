@@ -111,16 +111,15 @@ public class Board {
       }
     }
     
-    private boolean canCaptureBeMade(int x1, int y1, int newPosX, int newPosY, String colour, String type) {
+    private boolean canCaptureBeMade(int x1, int y1, int x3, int y3, String colour, String type) {
 
       int x2 = x1+1;
       int y2 = y1+1;
-      int x3 = x1+2;
-      int y3 = y1+2;
+      // int x3 = x1+2;
+      // int y3 = y1+2;
 
       boolean capture = false;
 
-      if (newPosX == x3 || newPosY == y3){
         // kill can not be made if the second coords inputted are off board
         if (x3 < 0 || x3 >= 8 || y3 < 0 || y3 >= 8){
           return false;
@@ -139,8 +138,8 @@ public class Board {
           if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
             return false;
           }
-          // return true;
-          capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
+          return true;
+          // capture = canCaptureBeMade(x3, y3, (x3+2), (y3+2), colour, type);
         }
         // only applies to black pieces
         else{
@@ -152,10 +151,9 @@ public class Board {
           if (grid[x2][y2] == 'r' || grid[x2][y2] == 'R'){
             return false;
           }
-          capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
+          return true;
+          // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
         }
-      }
-      return false;
           
     }
     public void update() {
