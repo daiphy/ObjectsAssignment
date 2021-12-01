@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class checkers_input{
+public class Input{
     public static char[] inputMethod(char[] a){
         Scanner s=new Scanner(System.in);
         boolean ask=true;
