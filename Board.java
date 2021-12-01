@@ -83,23 +83,33 @@ public class Board {
 
     // it wont push
 
-    public void makeMove(int x1, int y1, int x2, int y2){
-      grid[x2][y2] = grid[x1][y1];
-      grid[x1][y1] = ' ';
-      // removing the enemy piece when the player has legally jumped over it
-      if ( x1 - x2 == 2 || x1 - x2 == -2){
-        // row of the piece that needs to be eliminated
-        int eliminatedRow = (x1 + x2) / 2;
-        // column of the piece that needs to be eliminated
-        int eliminatedCol = (y1 + y2) / 2;
-        grid[eliminatedRow][eliminatedCol] = ' ';
+    public void makeMove(int x1, int y1, int x2, int y2, String player, String type){
+      if (canMoveBeMade(x1, y1, x2, y2, player, type)){
+        grid[x2][y2] = grid[x1][y1];
+        grid[x1][y1] = ' ';
+        // removing the enemy piece when the player has legally jumped over it
+        if ( x1 - x2 == 2 || x1 - x2 == -2){
+          if (canCaptureBeMade(x1, y1, x2, y2, player, type)){
+            // row of the piece that needs to be eliminated
+            int eliminatedRow = (x1 + x2) / 2;
+            // column of the piece that needs to be eliminated
+            int eliminatedCol = (y1 + y2) / 2;
+            grid[eliminatedRow][eliminatedCol] = ' ';
+          }
+          else {
+            System.out.println("Sorry this capture is not legal. Please enter a different play.");
+          }
+        }
+        // royal ascension
+        if( x2 == 0 && grid[x2][y2] == 'r'){
+          grid[x2][y2] = 'R';
+        }
+        if( x2 == 7 && grid[x2][y2] == 'b'){
+          grid[x2][y2] = 'B';
+        }
       }
-      // royal ascension
-      if( x2 == 0 && grid[x2][y2] == 'r'){
-        grid[x2][y2] = 'R';
-      }
-      if( x2 == 7 && grid[x2][y2] == 'b'){
-        grid[x2][y2] = 'B';
+      else {
+        System.out.println("Sorry this move is not legal. Please enter a different play.");
       }
     }
     
