@@ -18,8 +18,14 @@ public class Piece {
         xCord = inputxCord;
         color = pieceColor;
         type = pieceType;
-        
+
     }
+
+    /**
+     * Note: after the move is validated  and the loop exited
+     * I will grab the last 2 numbers in the array and update the piece object being moved with those numbers
+     * - James Z
+     */
 
     public int get_yCord(){
         return this.yCord;

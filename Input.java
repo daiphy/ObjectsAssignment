@@ -13,33 +13,37 @@ public class Input{
         String string="";
         int count=0;
         do{//loop for x coord of piece
-                System.out.print("Please enter the coordinates of your piece ");
-                System.out.print("and then the coordinate you wish to move it to ");
-                System.out.println("in the format (x,y);(x,y)");
-                int f=0;
-/*(1
- * 1)
- *(2
- * 2)*/
-                string=s.nextLine();
-                String[] b=string.split(";",2);
-                for (int z=0;z<b.length;z++){
-                    String[] c=b[z].split(",",3);
+            System.out.print("Please enter the coordinates of your piece ");
+            System.out.print("and then the coordinate you wish to move it to ");
+            System.out.println("in the format (x,y);(x,y)");
+            int f=0;
+            //Current input should look something like (1, 2);(3, 4)
+            string=s.nextLine();
+            String[] b=string.split(";",2);
+            //Should now look like (1, 2)
+            //(3, 4)
+            for (int z=0;z<b.length;z++){
+                String[] c=b[z].split(",",3);
+                /**
+                 * Will look like (1
+                 * 2) //Iteration 1
+                 * (3
+                 * 4) //Iteration 2
+                 */
+                    for (int y=0;y<c.length;y++){
+                        String sub = c[y];//a substituted and simplified thingie
+                        for (int x=0; x < (sub.length()); x++){
 
-                        for (int y=0;y<c.length;y++){
-                            String sub = c[y];//a substituted and simplified thingie
-                            for (int x=0; x < (sub.length()); x++){
-
-                                if (sub.charAt(x) !='('&&sub.charAt(x) !=')'){
-                                    
-                                    array[f]=c[y].charAt(x);
-                                    f++;
-                                }
+                            if (sub.charAt(x) !='('&&sub.charAt(x) !=')'){
                                 
-                        }
-                        //System.out.println(c[y]);
-                        }
-                }
+                                array[f]=c[y].charAt(x);
+                                f++;
+                            }
+                            
+                    }
+                    //System.out.println(c[y]);
+                    }
+            }
             
 //(1,1);(2,2)              
             ask=placeholder(array);
