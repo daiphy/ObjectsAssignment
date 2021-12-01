@@ -85,8 +85,6 @@ public class Board {
 
     public void makeMove(int x1, int y1, int x2, int y2, String player, String type){
       if (canMoveBeMade(x1, y1, x2, y2, player, type)){
-        grid[x2][y2] = grid[x1][y1];
-        grid[x1][y1] = ' ';
         // removing the enemy piece when the player has legally jumped over it
         if ( x1 - x2 == 2 || x1 - x2 == -2){
           if (canCaptureBeMade(x1, y1, x2, y2, player, type)){
@@ -100,6 +98,9 @@ public class Board {
             System.out.println("Sorry this capture is not legal. Please enter a different play.");
           }
         }
+        // moving the piece
+        grid[x2][y2] = grid[x1][y1];
+        grid[x1][y1] = ' ';
         // royal ascension
         if( x2 == 0 && grid[x2][y2] == 'r'){
           grid[x2][y2] = 'R';
@@ -141,6 +142,7 @@ public class Board {
           if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
             return false;
           }
+          // return true;
           capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
         }
         // only applies to black pieces
