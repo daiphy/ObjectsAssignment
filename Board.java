@@ -35,6 +35,10 @@ public class Board {
     }
 
     private boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+      if (this.grid[posX][posY] == ' ') {
+        System.out.println("Illegal move! Empty square here. :(");
+        return false;
+      }
       
       // isnt the boad gonna be from 0-7 cuz we're counting coding mode?
       // if (newPosX < 0 || newPosX >= 8 || newPosY < 0 || newPosY >= 8){
@@ -53,7 +57,7 @@ public class Board {
       }
       
       // Checks if the move made is forward (unless the piece is a royal)
-      if (type == "man") {
+      if (type == "pawn") {
         if (colour == "black") {
           if (posY - newPosY != 1) {
             return false;
@@ -162,9 +166,22 @@ public class Board {
         return true;
       }
     }
-    
+    //gets what piece exists on the square
+    public char getSquareId(int posX, int posY) {
+      return this.grid[posX][posY];
+    }
     public void swapTurns() {
       this.isBlackTurn = !this.isBlackTurn;
+    }
+    //gets who's turn it is. if its black's turn return true else return false.
+    public boolean getTurn() {
+      if (this.isBlackTurn == true) {
+        return true;
+      }
+      
+      else {
+        return false;
+      }
     }
     public void update() {
         System.out.println("------------------------");
