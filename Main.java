@@ -13,7 +13,7 @@ public class Main {
         //while (checkmate condition)
         while (true) {
            do {
-             userMoves = inputMethod(userMoves);
+             userMoves = input.inputMethod(userMoves);
              posX = userMoves[0];
              posY = userMoves[1];
              newPosX = userMoves[2];

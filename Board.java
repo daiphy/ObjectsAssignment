@@ -46,8 +46,8 @@ public class Board {
       }
             
       // Checks if the move made is diagonal of the current position
-      int xDifference = Math.abs(posX - newPosX);
-      int yDifference = Math.abs(posY - newPosY);
+      int xDifference = Math.abs(newPosX - posX);
+      int yDifference = Math.abs(newPosY - posY);
       if (xDifference != 1 || yDifference != 1) {
         return false;
       }
@@ -55,12 +55,12 @@ public class Board {
       // Checks if the move made is forward (unless the piece is a royal)
       if (type == "man") {
         if (colour == "black") {
-          if (newPosY - posY != 1) {
+          if (posY - newPosY != 1) {
             return false;
           }
         }
         else if (colour == "red") {
-          if (posY - newPosY != 1) {
+          if (newPosY - posY != 1) {
             return false;
           }
         }
