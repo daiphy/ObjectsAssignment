@@ -21,11 +21,13 @@ public class Piece {
 
     }
 
-    /**
-     * Note: after the move is validated  and the loop exited
-     * I will grab the last 2 numbers in the array and update the piece object being moved with those numbers
-     * - James Z
-     */
+    public void change_yCord(int y){
+        yCord = y;
+    }
+
+    public void change_xCord(int x){
+        xCord = x;
+    }
 
     public int get_yCord(){
         return this.yCord;
