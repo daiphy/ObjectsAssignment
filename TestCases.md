@@ -27,6 +27,10 @@
 
 	-> Should have no issues. 
 	
+6. First cell selected does not have a piece inside it
+
+	-> Should return as an illegal move.
+	
 ##### All of the cases should be tested with both Red and Black pieces.
 ### Input from Console:
 
