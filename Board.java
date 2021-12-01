@@ -113,8 +113,10 @@ public class Board {
     
     private boolean canCaptureBeMade(int x1, int y1, int x3, int y3, String colour, String type) {
 
-      int x2 = x1+1;
-      int y2 = y1+1;
+      int x2 = (x1 + x3) / 2;
+      int y2 = (y1 + y3) / 2;
+      int x4 = (x3 - x1) / 2;
+      int y4 = (y3 - y1) / 2;
       // int x3 = x1+2;
       // int y3 = y1+2;
 
