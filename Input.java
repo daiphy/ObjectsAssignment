@@ -5,8 +5,8 @@ public class Input{
 
         /* 
          * User Input Method
-         * 
-         * 
+         * returns char values of the inputed coors 
+         * in an array
         */
         Scanner s=new Scanner(System.in);
         boolean ask=true;
