@@ -41,7 +41,7 @@ public class Input{
                             }
                             
                     }
-                    //System.out.println(c[y]);
+
                     }
             }
             
