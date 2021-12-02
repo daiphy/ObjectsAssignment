@@ -77,7 +77,7 @@ public class Board {
     // }
 
     public boolean makeMove(int x1, int y1, int x2, int y2, String player, String type){
-      if (piece.canMoveBeMade(x1, y1, x2, y2, player, type) ||){
+      if (piece.canMoveBeMade(x1, y1, x2, y2, player, type)){
         grid[x2][y2] = grid[x1][y1];
         grid[x1][y1] = ' ';
         // royal ascension
@@ -103,14 +103,12 @@ public class Board {
           int eliminatedCol = (y1 + y2) / 2;
           grid[eliminatedRow][eliminatedCol] = ' ';
           return true;
-       }
-        
-       else {
-          System.out.println("Sorry the move/capture is illegal. Please input another play. :/");
-          return false;
-         }
-       }
-
+        }
+      }
+       //base case
+       System.out.println("Sorry the move/capture is illegal. Please input another play. :/");
+       return false;
+         
     }
     
     // public boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
@@ -175,6 +173,21 @@ public class Board {
     //     return false;
           
     // }
+    
+    public boolean getTurn() {
+      if (isBlackTurn == true) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    
+    public char getSquareId (int posX, int posY) {
+      return this.grid[posX][posY];
+    }
+    
+    
     public void update() {
         System.out.println("------------------------");
         for(int i = 0; i < this.grid.length; i++) {

@@ -46,7 +46,7 @@ public class Piece {
     // }
 
     //private method that checks for if a regular move (not capture can be made)
-    protected boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+    public boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
       
         // Checks if the move made is on the board
         if (newPosX < 1 || newPosX > 8 || newPosY < 1 || newPosY > 8) {
@@ -112,7 +112,7 @@ public class Piece {
     //     }
     //   }
       
-      protected boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
+      public boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
   
           // kill can not be made if the second coords inputted are off board
           if (x3 < 0 || x3 >= 8 || y3 < 0 || y3 >= 8){
