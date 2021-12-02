@@ -44,32 +44,32 @@ public class Board {
         this.grid[posX][posY] = value;
     }
 
-    // //private method that checks for if a regular move (not capture can be made)
-    // private boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+     //private method that checks for if a regular move (not capture can be made)
+     private boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
       
-    //   // Checks if the move made is on the board
-    //   if (newPosX < 1 || newPosX > 8 || newPosY < 1 || newPosY > 8) {
-    //     return false;
-    //   }
+        //Checks if the move made is on the board
+       if (newPosX < 1 || newPosX > 8 || newPosY < 1 || newPosY > 8) {
+         return false;
+       }
             
-    //   // Checks if the move made is diagonal of the current position
-    //   int xDifference = Math.abs(posX - newPosX);
-    //   int yDifference = Math.abs(posY - newPosY);
-    //   if (xDifference != 1 || yDifference != 1) {
-    //     return false;
-    //   }
+        //Checks if the move made is diagonal of the current position
+       int xDifference = Math.abs(posX - newPosX);
+       int yDifference = Math.abs(posY - newPosY);
+       if (xDifference != 1 || yDifference != 1) {
+         return false;
+       }
       
-    //   // Checks if the move made is forward (unless the piece is a royal)
-    //   //inverse for red and black, as red can only move from top to bottom and vice versa.
-    //   if (type.equals("pawn") && colour.equals("black") && newPosY - posY != 1) {
-    //         return false;
-    //   }
-    //   else if (type.equals("pawn") && colour.equals("red") && posY - newPosY != 1) {
-    //         return false;
-    //   }
+        //Checks if the move made is forward (unless the piece is a royal)
+       //inverse for red and black, as red can only move from top to bottom and vice versa.
+       if (type.equals("pawn") && colour.equals("black") && newPosY - posY != 1) {
+             return false;
+       }
+       else if (type.equals("pawn") && colour.equals("red") && posY - newPosY != 1) {
+             return false;
+       }
       
       
-    //   // Checks if new position isn't already taken by another piece
+        //Checks if new position isn't already taken by another piece
       if (grid[newPosX][newPosY] != ' ') {
         return false;
       }
@@ -77,25 +77,7 @@ public class Board {
       movesNoCaptures++;
       return true;
     }
-//move cancapture and canmove in piece.java
-    public void makeMove(int x1, int y1, int x2, int y2, String player, String type){
-      if (canMoveBeMade(x1, y1, x2, y2, player, type)){
-        // removing the enemy piece when the player has legally jumped over it
-        if ( x1 - x2 == 2 || x1 - x2 == -2){
-          if (canCaptureBeMade(x1,y1,x1+1,y1+1,x1+2,y1+2, player, type) == true 
-          || canCaptureBeMade(x1,y1,x1-1,y1+1,x1-2,y1+2, player, type) == true
-          || canCaptureBeMade(x1,y1,x1+1,y1-1,x1+2,y1-2, player,type) == true
-          || canCaptureBeMade(x1,y1,x1-1,y1-1,x1-2,y1-2, player, type) == true ){
-            // row of the piece that needs to be eliminated
-            int eliminatedRow = (x1 + x2) / 2;
-            // column of the piece that needs to be eliminated
-            int eliminatedCol = (y1 + y2) / 2;
-            grid[eliminatedRow][eliminatedCol] = ' ';
-          }
-          else {
-            System.out.println("Sorry the capture is illegal. Please input another play.");
-          }
-        }
+
     public boolean makeMove(int x1, int y1, int x2, int y2, String player, String type){
       if (piece.canMoveBeMade(x1, y1, x2, y2, player, type)){
         grid[x2][y2] = grid[x1][y1];
@@ -196,6 +178,7 @@ public class Board {
           }
         }
         return false;
+      }
     // public boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
 
     //   boolean capture = false;

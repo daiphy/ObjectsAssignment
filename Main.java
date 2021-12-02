@@ -59,7 +59,7 @@ public class Main {
                  break; //nothing on the square.
              }
              //legal move, stop asking. 
-             if (board.makeMove(posX, posY, newPosX, newPosY, colour, piece) == false) {
+             if (board.makeMove(posX, posY, newPosX, newPosY, colour, piece) == true) {
                board.changeTurn();
                break;
              }
