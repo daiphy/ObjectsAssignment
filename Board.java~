@@ -73,7 +73,7 @@ public class Board {
       //default return true.
       return true;
     }
-//move cancapture and canmove in piece.java
+
     public void makeMove(int x1, int y1, int x2, int y2, String player, String type){
       if (canMoveBeMade(x1, y1, x2, y2, player, type)){
         // removing the enemy piece when the player has legally jumped over it
@@ -107,7 +107,7 @@ public class Board {
       }
     }
     
-    private boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
+    public boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
 
 
       boolean capture = false;

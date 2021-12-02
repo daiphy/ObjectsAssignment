@@ -1,10 +1,10 @@
 public class Piece {
     
     // Fields
-    private int yCord;
-    private int xCord;
-    private char color;
-    private String type;
+    protected int yCord;
+    protected int xCord;
+    protected char color;
+    protected String type;
 
     public Piece (int inputyCord, int inputxCord, char pieceColor, String pieceType){
 
@@ -36,25 +36,25 @@ public class Piece {
 
     public int get_yCord(){
 
-        return yCord;
+        return this.yCord;
 
     }
 
     public int get_xCord(){
 
-        return xCord;
+        return this.xCord;
 
     }
 
     public char get_pieceColor(){
 
-        return color;
+        return this.color;
 
     }
     
     public String get_pieceType(){
 
-        return type;
+        return this.type;
 
     }
 
