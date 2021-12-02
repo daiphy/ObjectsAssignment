@@ -40,12 +40,9 @@ public class Board {
         this.grid[posX][posY] = value;
     }
 
-    public boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+    //private method that checks for if a regular move (not capture can be made)
+    private boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
       
-      // isnt the boad gonna be from 0-7 cuz we're counting coding mode?
-      // if (newPosX < 0 || newPosX >= 8 || newPosY < 0 || newPosY >= 8){
-      // idk - daiphy
-        
       // Checks if the move made is on the board
       if (newPosX < 1 || newPosX > 8 || newPosY < 1 || newPosY > 8) {
         return false;
@@ -59,25 +56,21 @@ public class Board {
       }
       
       // Checks if the move made is forward (unless the piece is a royal)
-      if (type == "man") {
-        if (colour == "black") {
-          if (newPosY - posY != 1) {
+      //inverse for red and black, as red can only move from top to bottom and vice versa.
+      if (type.equals("pawn") && colour.equals("black") && newPosY - posY != 1) {
             return false;
-          }
-        }
-        else if (colour == "red") {
-          if (posY - newPosY != 1) {
-            return false;
-          }
-        }
       }
+      else if (type.equals("pawn") && colour.equals("red") && posY - newPosY != 1) {
+            return false;
+      }
+      
       
       // Checks if new position isn't already taken by another piece
 
       if (grid[newPosX][newPosY] != ' ') {
         return false;
       }
-      
+      //default return true.
       return true;
     }
 
@@ -85,10 +78,10 @@ public class Board {
       if (canMoveBeMade(x1, y1, x2, y2, player, type)){
         // removing the enemy piece when the player has legally jumped over it
         if ( x1 - x2 == 2 || x1 - x2 == -2){
-          if (canCaptureBeMade(x1,y1,x1+1,y1+1,x1+2,y1+2, player, type) 
-          || canCaptureBeMade(x1,y1,x1-1,y1+1,x1-2,y1+2, player, type) 
-          || canCaptureBeMade(x1,y1,x1+1,y1-1,x1+2,y1-2, player,type) 
-          || canCaptureBeMade(x1,y1,x1-1,y1-1,x1-2,y1-2, player, type)){
+          if (canCaptureBeMade(x1,y1,x1+1,y1+1,x1+2,y1+2, player, type) == true 
+          || canCaptureBeMade(x1,y1,x1-1,y1+1,x1-2,y1+2, player, type) == true
+          || canCaptureBeMade(x1,y1,x1+1,y1-1,x1+2,y1-2, player,type) == true
+          || canCaptureBeMade(x1,y1,x1-1,y1-1,x1-2,y1-2, player, type) == true ){
             // row of the piece that needs to be eliminated
             int eliminatedRow = (x1 + x2) / 2;
             // column of the piece that needs to be eliminated
@@ -127,11 +120,11 @@ public class Board {
         if (grid[x3][y3] == 'r' || grid[x3][y3] == 'R' || grid[x3][y3] == 'B' ||grid[x3][y3] == 'B'){
           return false;
         }
-        if (type.equals("pawn")){ 
+        if (type.equalsIgnoreCase("pawn")){ 
           // only applies to red pieces
-          if (colour.equals("red")){
+          if (colour.equalsIgnoreCase("red")){
             // piece can not move down (can only move up)
-            if ((grid[x1][y1] == 'r' || grid[x1][y1] == 'R') && x3 > x1){
+            if ((grid[x1][y1] == 'r') && x3 > x1){
               return false;
             }
             // no black pieces to jump over
@@ -144,7 +137,7 @@ public class Board {
           // only applies to black pieces
           else{
             // piece can not move up (can only move down)
-            if ((grid[x1][y1] == 'b' || grid[x1][y1] == 'B') && x3 < x1){
+            if ((grid[x1][y1] == 'b') && x3 < x1){
               return false;
             }
             // no red pieces to jump over
@@ -155,9 +148,9 @@ public class Board {
             // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
           }
         }
-        else {
+        else if(type.equalsIgnoreCase("royal")) {
           // only applies to red pieces
-          if (colour.equals("red")){
+          if (colour.equalsIgnoreCase("red")){
             if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
               return false;
             }
@@ -174,6 +167,7 @@ public class Board {
             // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
           }
         }
+        return false;
           
     }
     public void update() {
