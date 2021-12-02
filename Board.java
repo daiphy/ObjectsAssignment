@@ -74,6 +74,7 @@ public class Board {
         return false;
       }
       //default return true.
+      movesNoCaptures++;
       return true;
     }
 //move cancapture and canmove in piece.java
@@ -131,6 +132,8 @@ public class Board {
             if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
               return false;
             }
+            blackCaptures++;
+            movesNoCaptures = 0;
             return true;
             // capture = canCaptureBeMade(x3, y3, (x3+2), (y3+2), colour, type);
           }
@@ -144,6 +147,8 @@ public class Board {
             if (grid[x2][y2] != 'r' || grid[x2][y2] != 'R'){
               return false;
             }
+            redCaptures++;
+            movesNoCaptures = 0;
             return true;
             // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
           }
@@ -154,6 +159,8 @@ public class Board {
             if (grid[x2][y2] != 'b' || grid[x2][y2] != 'B'){
               return false;
             }
+            blackCaptures++;
+            movesNoCaptures = 0;
             return true;
             // capture = canCaptureBeMade(x3, y3, (x3+2), (y3+2), colour, type);
           }
@@ -163,6 +170,8 @@ public class Board {
             if (grid[x2][y2] != 'r' || grid[x2][y2] != 'R'){
               return false;
             }
+            redCaptures++;
+            movesNoCaptures = 0;
             return true;
             // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
           }
@@ -178,14 +187,25 @@ public class Board {
             }
             System.out.println(""); //newline
         }
-        System.out.println("------------------------"); 
+        System.out.println("------------------------");
+        int gameStatus = endCondition(redCaptures, blackCaptures, movesNoCaptures); 
     }
 
-    public boolean endCondition(int redCaptures, int blackCaptures, int movesNoCaptures) {
+    public int endCondition(int redCaptures, int blackCaptures, int movesNoCaptures) {
       /**This method checks whether any of the conditions below have been met to end the game
        * - All pieces of one color have been captured
        * - 10 moves were made without capturing any pieces
+       * It will return a 1 for a black victory, 2 for a red victory, 3 for a tie, and 0 if the game continues
        */
-
+      if (redCaptures == 12){
+        return 1;
+      }
+      if (blackCaptures == 12){
+        return 2;
+      }
+      if (movesNoCaptures == 10){
+        return 3;
+      }
+      return 0;
     }
 }
