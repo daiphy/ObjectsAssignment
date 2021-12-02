@@ -20,6 +20,7 @@ public class Piece {
 //        color = pieceColor;
 //        type = pieceType;
 
+
         //Ascension process assumes that red starts on the top, and black starts on the bottom
     }
 
