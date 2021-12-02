@@ -25,10 +25,15 @@ public class Main {
              }
              
              userMoves = Input.inputMethod(userMoves);
+             for (int i = 0; i < 4; i++) {
+               System.out.println(userMoves[i]);
+             }
+             
              posX = userMoves[0];
              posY = userMoves[1];
              newPosX = userMoves[2];
              newPosY = userMoves[3];
+             System.out.println(posX + " " + posY + " " + newPosX + " " + newPosY);
              //get the id using the method getSquareId
              switch (board.getSquareId(posX, posY)) {
                case 'r':

@@ -184,7 +184,8 @@ public class Board {
     }
     
     public char getSquareId (int posX, int posY) {
-      return this.grid[posX][posY];
+      System.out.print(posX + " " + posY);
+      return grid[posX][posY];
     }
     
     
