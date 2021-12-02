@@ -6,8 +6,7 @@ public class Board {
     //the grid is private
     private char[][] grid = new char[8][8];
     Piece piece = new Piece();
-    boolean isBlackTurn = true;
-    
+
     public Board() {
         //init constructor, temporairly all spaces, might add initial grid spaces later 
         // for(int i = 0; i < this.grid.length; i++) {
@@ -76,8 +75,24 @@ public class Board {
     //   return true;
     // }
 
-    public boolean makeMove(int x1, int y1, int x2, int y2, String player, String type){
-      if (piece.canMoveBeMade(x1, y1, x2, y2, player, type) ||){
+    public void makeMove(int x1, int y1, int x2, int y2, String player, String type){
+      if (piece.canMoveBeMade(x1, y1, x2, y2, player, type)){
+        // removing the enemy piece when the player has legally jumped over it
+        if ( x1 - x2 == 2 || x1 - x2 == -2){
+          if (piece.canCaptureBeMade(x1,y1,x1+1,y1+1,x1+2,y1+2, player, type) == true 
+          || piece.canCaptureBeMade(x1,y1,x1-1,y1+1,x1-2,y1+2, player, type) == true
+          || piece.canCaptureBeMade(x1,y1,x1+1,y1-1,x1+2,y1-2, player,type) == true
+          || piece.canCaptureBeMade(x1,y1,x1-1,y1-1,x1-2,y1-2, player, type) == true ){
+            // row of the piece that needs to be eliminated
+            int eliminatedRow = (x1 + x2) / 2;
+            // column of the piece that needs to be eliminated
+            int eliminatedCol = (y1 + y2) / 2;
+            grid[eliminatedRow][eliminatedCol] = ' ';
+          }
+          else {
+            System.out.println("Sorry the capture is illegal. Please input another play.");
+          }
+        }
         grid[x2][y2] = grid[x1][y1];
         grid[x1][y1] = ' ';
         // royal ascension
@@ -87,30 +102,10 @@ public class Board {
         if( x2 == 7 && grid[x2][y2] == 'b'){
           grid[x2][y2] = 'B';
         }
-        
-        return true;//legit move already done
       }
-      
-        // removing the enemy piece when the player has legally jumped over it
-      else if (x1 - x2 == 2 || x1 - x2 == -2){
-        if (piece.canCaptureBeMade(x1,y1,x1+1,y1+1,x1+2,y1+2, player, type) == true 
-        || piece.canCaptureBeMade(x1,y1,x1-1,y1+1,x1-2,y1+2, player, type) == true
-        || piece.canCaptureBeMade(x1,y1,x1+1,y1-1,x1+2,y1-2, player,type) == true
-        || piece.canCaptureBeMade(x1,y1,x1-1,y1-1,x1-2,y1-2, player, type) == true ){
-         // row of the piece that needs to be eliminated
-          int eliminatedRow = (x1 + x2) / 2;
-          // column of the piece that needs to be eliminated
-          int eliminatedCol = (y1 + y2) / 2;
-          grid[eliminatedRow][eliminatedCol] = ' ';
-          return true;
-       }
-        
-       else {
-          System.out.println("Sorry the move/capture is illegal. Please input another play. :/");
-          return false;
-         }
-       }
-
+      else {
+        System.out.println("Sorry the move is illegal. Please input another play.");
+      }
     }
     
     // public boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
