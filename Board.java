@@ -85,10 +85,10 @@ public class Board {
       if (canMoveBeMade(x1, y1, x2, y2, player, type)){
         // removing the enemy piece when the player has legally jumped over it
         if ( x1 - x2 == 2 || x1 - x2 == -2){
-          if (canCaptureBeMade(x1,y1,x1+1,y1+1,x1+2,y1+2, player) 
-          || canCaptureBeMade(x1,y1,x1-1,y1+1,x1-2,y1+2, player) 
-          || canCaptureBeMade(x1,y1,x1+1,y1-1,x1+2,y1-2, player) 
-          || canCaptureBeMade(x1,y1,x1-1,y1-1,x1-2,y1-2, player)){
+          if (canCaptureBeMade(x1,y1,x1+1,y1+1,x1+2,y1+2, player, type) 
+          || canCaptureBeMade(x1,y1,x1-1,y1+1,x1-2,y1+2, player, type) 
+          || canCaptureBeMade(x1,y1,x1+1,y1-1,x1+2,y1-2, player,type) 
+          || canCaptureBeMade(x1,y1,x1-1,y1-1,x1-2,y1-2, player, type)){
             // row of the piece that needs to be eliminated
             int eliminatedRow = (x1 + x2) / 2;
             // column of the piece that needs to be eliminated
@@ -114,7 +114,7 @@ public class Board {
       }
     }
     
-    private boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
+    public boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
 
 
       boolean capture = false;
