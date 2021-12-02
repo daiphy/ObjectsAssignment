@@ -6,7 +6,7 @@ public class Board {
     //the grid is private
     private char[][] grid = new char[8][8];
     Piece piece = new Piece();
-    boolean isBlackTurn = true;
+    private boolean isBlackTurn = true;
     
     public Board() {
         //init constructor, temporairly all spaces, might add initial grid spaces later 
@@ -184,10 +184,14 @@ public class Board {
     }
     
     public char getSquareId (int posX, int posY) {
-      System.out.print(posX + " " + posY);
       return grid[posX][posY];
     }
     
+    public void changeTurn() {
+      isBlackTurn = !(isBlackTurn);
+    }
+    
+      
     
     public void update() {
         System.out.println("------------------------");

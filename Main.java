@@ -15,7 +15,8 @@ public class Main {
       board.update();
         //while (checkmate condition)
       while (true) {//temporary 
-         do {
+         while (true) {
+             board.update();
              if (board.getTurn() == true) {
                 System.out.println("It's black's turn ^_^");
              }
@@ -29,11 +30,11 @@ public class Main {
                System.out.println(userMoves[i]);
              }
              
-             posX = userMoves[0];
-             posY = userMoves[1];
-             newPosX = userMoves[2];
-             newPosY = userMoves[3];
-             System.out.println(posX + " " + posY + " " + newPosX + " " + newPosY);
+             posX = Character.getNumericValue(userMoves[0]);
+             posY = Character.getNumericValue(userMoves[1]);
+             newPosX = Character.getNumericValue(userMoves[2]);
+             newPosY = Character.getNumericValue(userMoves[3]);
+
              //get the id using the method getSquareId
              switch (board.getSquareId(posX, posY)) {
                case 'r':
@@ -57,8 +58,14 @@ public class Main {
                  piece = "";
                  break; //nothing on the square.
              }
+             //legal move, stop asking. 
+             if (board.makeMove(posX, posY, newPosX, newPosY, colour, piece) == false) {
+               board.changeTurn();
+               break;
+             }
              
-           } while (board.makeMove(posX, posY, newPosX, newPosY, colour, piece) == false); //if move is illegal, cycle back and ask another time
+             
+           }  //if move is illegal, cycle back and ask another time
            //the black and man are placeholders at the moment 
            
            board.update();
