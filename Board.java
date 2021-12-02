@@ -5,6 +5,9 @@
 public class Board {
     //the grid is private
     private char[][] grid = new char[8][8];
+    int redCaptures = 0;
+    int blackCaptures = 0;
+    int movesNoCaptures = 0;
 
     public Board() {
         //init constructor, temporairly all spaces, might add initial grid spaces later 
@@ -109,9 +112,6 @@ public class Board {
     
     private boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
 
-
-      boolean capture = false;
-
         // kill can not be made if the second coords inputted are off board
         if (x3 < 0 || x3 >= 8 || y3 < 0 || y3 >= 8){
           return false;
@@ -141,7 +141,7 @@ public class Board {
               return false;
             }
             // no red pieces to jump over
-            if (grid[x2][y2] == 'r' || grid[x2][y2] == 'R'){
+            if (grid[x2][y2] != 'r' || grid[x2][y2] != 'R'){
               return false;
             }
             return true;
@@ -151,7 +151,7 @@ public class Board {
         else if(type.equalsIgnoreCase("royal")) {
           // only applies to red pieces
           if (colour.equalsIgnoreCase("red")){
-            if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
+            if (grid[x2][y2] != 'b' || grid[x2][y2] != 'B'){
               return false;
             }
             return true;
@@ -160,7 +160,7 @@ public class Board {
           // only applies to black pieces
           else{
             // no red pieces to jump over
-            if (grid[x2][y2] == 'r' || grid[x2][y2] == 'R'){
+            if (grid[x2][y2] != 'r' || grid[x2][y2] != 'R'){
               return false;
             }
             return true;
@@ -179,5 +179,13 @@ public class Board {
             System.out.println(""); //newline
         }
         System.out.println("------------------------"); 
+    }
+
+    public boolean endCondition(int redCaptures, int blackCaptures, int movesNoCaptures) {
+      /**This method checks whether any of the conditions below have been met to end the game
+       * - All pieces of one color have been captured
+       * - 10 moves were made without capturing any pieces
+       */
+
     }
 }
