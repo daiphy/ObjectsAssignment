@@ -20,19 +20,6 @@ public class Piece {
         color = pieceColor;
         type = pieceType;
 
-        //Ascension process assumes that red starts on the top, and black starts on the bottom
-        if (color == 'R' && yCord == 7 && type.equals("man")){
-
-            type = "king";
-
-        }
-
-        if (color == 'B' && yCord == 0 && type.equals("man")){
-
-            type = "king";
-
-        }
-
     }
 
     public int get_yCord(){
@@ -44,7 +31,6 @@ public class Piece {
     public int get_xCord(){
 
         return this.xCord;
-=======
         // yCord = inputyCord;
         // xCord = inputxCord;
         // color = pieceColor;
