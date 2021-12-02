@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Input{
+public class Input {
     public static char[] inputMethod(char[] array){
 
         /* 
