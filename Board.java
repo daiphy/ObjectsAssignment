@@ -114,7 +114,7 @@ public class Board {
       }
     }
     
-    private boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour) {
+    private boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
 
 
       boolean capture = false;
@@ -127,31 +127,52 @@ public class Board {
         if (grid[x3][y3] == 'r' || grid[x3][y3] == 'R' || grid[x3][y3] == 'B' ||grid[x3][y3] == 'B'){
           return false;
         }
-        // only applies to red pieces
-        if (colour.equals("red")){
-          // piece can not move down (can only move up)
-          if ((grid[x1][y1] == 'r' || grid[x1][y1] == 'R') && x3 > x1){
-            return false;
+        if (type.equals("pawn")){ 
+          // only applies to red pieces
+          if (colour.equals("red")){
+            // piece can not move down (can only move up)
+            if ((grid[x1][y1] == 'r' || grid[x1][y1] == 'R') && x3 > x1){
+              return false;
+            }
+            // no black pieces to jump over
+            if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
+              return false;
+            }
+            return true;
+            // capture = canCaptureBeMade(x3, y3, (x3+2), (y3+2), colour, type);
           }
-          // no black pieces to jump over
-          if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
-            return false;
+          // only applies to black pieces
+          else{
+            // piece can not move up (can only move down)
+            if ((grid[x1][y1] == 'b' || grid[x1][y1] == 'B') && x3 < x1){
+              return false;
+            }
+            // no red pieces to jump over
+            if (grid[x2][y2] == 'r' || grid[x2][y2] == 'R'){
+              return false;
+            }
+            return true;
+            // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
           }
-          return true;
-          // capture = canCaptureBeMade(x3, y3, (x3+2), (y3+2), colour, type);
         }
-        // only applies to black pieces
-        else{
-          // piece can not move up (can only move down)
-          if ((grid[x1][y1] == 'b' || grid[x1][y1] == 'B') && x3 < x1){
-            return false;
+        else {
+          // only applies to red pieces
+          if (colour.equals("red")){
+            if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
+              return false;
+            }
+            return true;
+            // capture = canCaptureBeMade(x3, y3, (x3+2), (y3+2), colour, type);
           }
-          // no red pieces to jump over
-          if (grid[x2][y2] == 'r' || grid[x2][y2] == 'R'){
-            return false;
+          // only applies to black pieces
+          else{
+            // no red pieces to jump over
+            if (grid[x2][y2] == 'r' || grid[x2][y2] == 'R'){
+              return false;
+            }
+            return true;
+            // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
           }
-          return true;
-          // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
         }
           
     }
