@@ -32,7 +32,7 @@ public class Piece {
    
     //protected method that checks for if a regular move (not capture can be made)
     protected boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type, char[][] grid) {
-      
+    
         // Checks if the move made is on the board
         if (newPosX < 1 || newPosX > 8 || newPosY < 1 || newPosY > 8) {
           return false;
