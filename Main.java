@@ -14,10 +14,10 @@ public class Main {
     int posX = 0, posY = 0, newPosX = 0, newPosY = 0; //variables stores the old and new data for the moves the user wants
     String colour = "", piece = "";
     char[] userMoves = new char[4];
+    board.update();//show inital board
       //while (checkmate condition)
     while (true) {//temporary 
         while (true) {
-            board.update();
             if (board.getTurn() == true) {
               System.out.println("It's black's turn ^_^");
             }
