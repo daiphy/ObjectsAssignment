@@ -55,7 +55,7 @@ public class Board {
             grid[x2][y2] = 'B';
           }
           // removing the enemy piece when the player has legally jumped over it
-          if (piece.canCaptureBeMade(x1, y1, x2, y2, player)){
+          if (piece.canCaptureBeMade(x1, y1, x2, y2, player, grid)){
             // row of the piece that needs to be eliminated
             int eliminatedRow = (x1 + x2) / 2;
             // column of the piece that needs to be eliminated
