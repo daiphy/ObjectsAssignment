@@ -27,9 +27,6 @@ public class Main {
             }
             
             userMoves = Input.inputMethod(userMoves);
-            for (int i = 0; i < 4; i++) {
-              System.out.println(userMoves[i]);
-            }
             
             posX = Character.getNumericValue(userMoves[0]);
             posY = Character.getNumericValue(userMoves[1]);
