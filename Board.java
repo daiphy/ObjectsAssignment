@@ -44,15 +44,15 @@ public class Board {
     System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
     System.out.println(this.getSquareId(x2, y2));
         // condition if the move can be made or capture.  
-        if (piece.canCaptureBeMade(x1, y1, x2, y2, player, this.grid) || piece.canMoveBeMade(x1, y1, x2, y2, player, type,this.grid)){
-          grid[x2][y2] = grid[x1][y1];
-          grid[x1][y1] = ' ';
+        if (piece.canCaptureBeMade(x1, y1, x2, y2, player, this.grid) == true || piece.canMoveBeMade(x1, y1, x2, y2, player, type, this.grid) == true) {
+          this.grid[x2][y2] = this.grid[x1][y1];
+          this.grid[x1][y1] = ' ';
           // royal ascension
-          if( x2 == 0 && grid[x2][y2] == 'r'){
-            grid[x2][y2] = 'R';
+          if( x2 == 0 && this.grid[x2][y2] == 'r'){
+            this.grid[x2][y2] = 'R';
           }
           if( x2 == 7 && grid[x2][y2] == 'b'){
-            grid[x2][y2] = 'B';
+            this.grid[x2][y2] = 'B';
           }
           // removing the enemy piece when the player has legally jumped over it
           if (piece.canCaptureBeMade(x1, y1, x2, y2, player, grid)){
@@ -138,7 +138,9 @@ public class Board {
   
   public int update() {
       System.out.println("-----  Pieces captured by black: " + redCaptures + " -----"); //Shows the number of red pieces captured
+      System.out.println("   0  1  2  3  4  5  6  7");
       for(int i = 0; i < this.grid.length; i++) {
+          System.out.print(i + " ");
           for (int j = 0; j < this.grid[0].length; j++) {
               System.out.print("[" + this.grid[i][j] + "]");
           }
