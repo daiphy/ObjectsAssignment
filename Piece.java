@@ -39,8 +39,8 @@ public class Piece {
         }
               
         // Checks if the move made is diagonal of the current position
-        int xDifference = Math.abs(posX - newPosX);
-        int yDifference = Math.abs(posY - newPosY);
+        int xDifference = Math.abs(newPosX - posX);
+        int yDifference = Math.abs(newPosY - posY);
         if (xDifference != 1 || yDifference != 1) {
           return false;
         }
