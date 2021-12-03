@@ -52,13 +52,67 @@ public class Board {
       return true;
     }
     
-    private boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+    public boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour) {
+      
+      // Checks if the move made is on the board
+      if (newPosX < 0 || newPosX > 7 || newPosY < 0 || newPosY > 7) {
+        System.out.println("off the board");
+        return false;
+      }
+      
+      // checks if there's an empty space at the current position
+      if (grid[posX][posY] == ' ') {
+        System.out.println("empty space");
+        return false;
+      }
+      
+      // checks if there's an empty space at the new position
+      if (grid[newPosX][newPosY] != ' ') {
+        System.out.println("empty space at new position");
+        return false;
+      }
+      
+      // conds if the difference between the 2 points is not 2
+      int xDifference = Math.abs(posX - newPosX);
+      int yDifference = Math.abs(posY - newPosY);
+      if (xDifference != 2 || yDifference != 2) {
+        System.out.println("2 part difference");
+        return false;
+      }
+      
+      // finds the middle piece coords        
+      int middleX = (posX + newPosX) / 2;
+      int middleY = (posY + newPosY) / 2;
+
+      char piece = grid[posX][posY];
+      if (colour.equals("red")) {
+        
+        char middlePiece = grid[middleX][middleY];
+        if (middleX > posX && piece == 'r') {
+          return false;
+        }
+        
+        if (middlePiece == 'b' || middlePiece == 'B') {
+          return true;
+        }
+      }
+      else {
+        
+        char middlePiece = grid[middleX][middleY];
+        if (middleX < posX && piece == 'b') {
+          return false;
+        }
+        
+        if (middlePiece == 'r' || middlePiece == 'R') {
+          return true;
+        }     
+      }
       return false;
     }
     // the public method that will be called when a move is made, if both methods return false then the move is illegal
     public boolean checkMove(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
       if (canMoveBeMade(posX, posY, newPosX, newPosY, colour, type) == false && 
-          canCaptureBeMade(posX, posY, newPosX, newPosY, colour, type) == false) {
+          canCaptureBeMade(posX, posY, newPosX, newPosY, colour) == false) {
         return false;
       }
       else {
