@@ -10,7 +10,7 @@ public class Main {
       //init new board class :))
     Board board = new Board();
     String userChoice = "";
-    
+    int gameStatus = 0; //the game status where we check if the game continues, ends in a win for red or black, or draw.
     int posX = 0, posY = 0, newPosX = 0, newPosY = 0; //variables stores the old and new data for the moves the user wants
     String colour = "", piece = "";
     char[] userMoves = new char[4];
@@ -59,22 +59,26 @@ public class Main {
             //legal move, stop asking. 
             if (board.makeMove(posX, posY, newPosX, newPosY, colour, piece) == true) {
               board.changeTurn();
-              break;
             }
           //if move is illegal, cycle back and ask another time
           
-          switch(board.update()) {
-            case 1: //black victory
-            System.out.println("GG, black wins! :)");
-            break;
-            case 2: //red victory
-            System.out.println("GG, red wins! :)");
-            break;
-            case 3: //draw
-            System.out.println("GG, draw (10 moves in a row with no captures)! :)");
-            break;
+          gameStatus = board.update(); 
+            if (gameStatus != 0) {
+              if (gameStatus == 1) {
+                System.out.println("GG, black wins! :)");
+              }
+             //black victory
+              else if (gameStatus == 2) {
+                System.out.println("GG, red wins! :)");
+              } //red victory
+
+              else { //game status 3, aka draw.
+                System.out.println("GG, draw (10 moves in a row with no captures)! :)");
+              }
+            break; //get out of the loop
           }
         }
+        
 
         //ask if they want to play again
         System.out.print("Do you want to play again? (y/n) ");

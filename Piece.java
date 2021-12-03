@@ -61,8 +61,8 @@ public class Piece {
         // Checks if new position isn't already taken by another piece
   
         if (grid[newPosY][newPosX] != ' ') {
-          
           System.out.println("4");
+          System.out.println(grid[newPosY][newPosX]);
           return false;
         }
         //default return true.
