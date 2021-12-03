@@ -42,22 +42,27 @@ public class Piece {
         int xDifference = Math.abs(newPosX - posX);
         int yDifference = Math.abs(newPosY - posY);
         if (xDifference != 1 || yDifference != 1) {
+          System.out.println("1");
           return false;
         }
         
         // Checks if the move made is forward (unless the piece is a royal)
         //inverse for red and black, as red can only move from top to bottom and vice versa.
         if (type.equals("pawn") && colour.equals("black") && newPosY - posY != 1) {
+              System.out.println("2");
               return false;
         }
         else if (type.equals("pawn") && colour.equals("red") && posY - newPosY != 1) {
+              System.out.println("3");
               return false;
         }
         
         
         // Checks if new position isn't already taken by another piece
   
-        if (grid[newPosX][newPosY] != ' ') {
+        if (this.grid[newPosY][newPosX] != ' ') {
+
+          System.out.println("4");
           return false;
         }
         //default return true.

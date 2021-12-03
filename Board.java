@@ -40,7 +40,9 @@ public class Board {
 
   }
 
-  public boolean makeMove(int x1, int y1, int x2, int y2, String player, String type){     
+  public boolean makeMove(int x1, int y1, int x2, int y2, String player, String type){
+    System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
+    System.out.println(this.getSquareId(x2, y2));
         // condition if the move can be made or capture.  
         if (piece.canCaptureBeMade(x1, y1, x2, y2, player) || piece.canMoveBeMade(x1, y1, x2, y2, player, type)){
           grid[x2][y2] = grid[x1][y1];

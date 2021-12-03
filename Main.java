@@ -10,7 +10,7 @@ public class Main {
       //init new board class :))
     Board board = new Board();
     String userChoice = "";
-
+    
     int posX = 0, posY = 0, newPosX = 0, newPosY = 0; //variables stores the old and new data for the moves the user wants
     String colour = "", piece = "";
     char[] userMoves = new char[4];
