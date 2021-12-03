@@ -110,17 +110,16 @@ public class Board {
       return false;
     }
     // the public method that will be called when a move is made, if both methods return false then the move is illegal
-    public boolean checkMove(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
-      if (canMoveBeMade(posX, posY, newPosX, newPosY, colour, type) == false && 
-          canCaptureBeMade(posX, posY, newPosX, newPosY, colour) == false) {
-        return false;
-      }
-      else {
-        return true;
-      }
-    }
-    
-    public void update() {
+//     public boolean checkMove(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+//       if (canMoveBeMade(posX, posY, newPosX, newPosY, colour, type) == false && 
+//           canCaptureBeMade(posX, posY, newPosX, newPosY, colour) == false) {
+//         return false;
+//       }
+//       else {
+//         return true;
+//       }
+//     }
+      public void update() {
         System.out.println("------------------------");
         for(int i = 0; i < this.grid.length; i++) {
             for (int j = 0; j < this.grid[0].length; j++) {

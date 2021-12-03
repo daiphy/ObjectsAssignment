@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
-public class Input{
+public class Input {
+
     public static char[] inputMethod(char[] array){
 
         /* 
@@ -51,11 +52,5 @@ public class Input{
         s.close();
         return array;
     }
-    public static boolean placeholder(char[] array){
-        /*
-         * Placeholder method for the validation inputs made by other members
-         * 
-        */
-        return false;
-    }
+
 }
