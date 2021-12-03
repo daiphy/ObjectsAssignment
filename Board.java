@@ -142,7 +142,7 @@ public class Board {
           }
           System.out.println(""); //newline
       }
-      System.out.println("-----  Pieces captured by red: " + blackCaptures + " -----" + blackCaptures);
+      System.out.println("-----  Pieces captured by red: " + blackCaptures + " -----");
       int gameStatus = endCondition(redCaptures, blackCaptures, movesNoCaptures); 
       return gameStatus;
   }
