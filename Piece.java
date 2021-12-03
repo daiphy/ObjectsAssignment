@@ -1,6 +1,6 @@
 public class Piece {
     
-    protected char[][] grid = new char[8][8];
+    //protected char[][] grid = new char[8][8];
     // Fields
     protected int yCord;
     protected int xCord;
@@ -31,7 +31,7 @@ public class Piece {
 
    
     //protected method that checks for if a regular move (not capture can be made)
-    protected boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+    protected boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type, char[] grid) {
       
         // Checks if the move made is on the board
         if (newPosX < 1 || newPosX > 8 || newPosY < 1 || newPosY > 8) {
@@ -60,8 +60,8 @@ public class Piece {
         
         // Checks if new position isn't already taken by another piece
   
-        if (this.grid[newPosY][newPosX] != ' ') {
-
+        if (grid[newPosY][newPosX] != ' ') {
+          
           System.out.println("4");
           return false;
         }
@@ -69,7 +69,7 @@ public class Piece {
         return true;
       }
   
-    protected boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour) {
+    protected boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, char[] grid) {
       
       // Checks if the move made is on the board
       if (newPosX < 0 || newPosX > 7 || newPosY < 0 || newPosY > 7) {

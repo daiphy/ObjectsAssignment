@@ -44,7 +44,7 @@ public class Board {
     System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
     System.out.println(this.getSquareId(x2, y2));
         // condition if the move can be made or capture.  
-        if (piece.canCaptureBeMade(x1, y1, x2, y2, player) || piece.canMoveBeMade(x1, y1, x2, y2, player, type)){
+        if (piece.canCaptureBeMade(x1, y1, x2, y2, player, this.grid) || piece.canMoveBeMade(x1, y1, x2, y2, player, type,this.grid)){
           grid[x2][y2] = grid[x1][y1];
           grid[x1][y1] = ' ';
           // royal ascension
