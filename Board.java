@@ -129,4 +129,21 @@ public class Board {
         }
         System.out.println("------------------------"); 
     }
+        public int endCondition(int redCaptures, int blackCaptures, int movesNoCaptures) {
+            /**This method checks whether any of the conditions below have been met to end the game
+           * - All pieces of one color have been captured
+           * - 10 moves were made without capturing any pieces
+           * It will return a 1 for a black victory, 2 for a red victory, 3 for a tie, and 0 if the game continues
+           */
+           if (redCaptures == 12){
+               return 1;
+            }
+           if (blackCaptures == 12){
+               return 2;
+            }
+           if (movesNoCaptures == 10){
+               return 3;
+            }
+            return 0;
+       }
 }
