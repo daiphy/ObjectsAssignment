@@ -26,6 +26,9 @@ public class Main {
              }
              
              userMoves = Input.inputMethod(userMoves);
+             for (int i = 0; i < 4; i++) {
+               System.out.println(userMoves[i]);
+             }
              
              posX = Character.getNumericValue(userMoves[0]);
              posY = Character.getNumericValue(userMoves[1]);
@@ -66,7 +69,6 @@ public class Main {
            //the black and man are placeholders at the moment 
            
            board.update();
-           
         }
       // Input input = new Input();
       // System.out.println(board.checkMove(1, 2, 2, 3, "red", "man"));
