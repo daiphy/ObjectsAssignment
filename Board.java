@@ -135,14 +135,14 @@ public class Board {
   }
   
   public int update() {
-      System.out.println("------------------------  " + redCaptures); //Shows the number of red pieces captured
+      System.out.println("-----  Pieces captured by black: " + redCaptures + " -----"); //Shows the number of red pieces captured
       for(int i = 0; i < this.grid.length; i++) {
           for (int j = 0; j < this.grid[0].length; j++) {
               System.out.print("[" + this.grid[i][j] + "]");
           }
           System.out.println(""); //newline
       }
-      System.out.println("------------------------  " + blackCaptures);
+      System.out.println("-----  Pieces captured by red: " + blackCaptures + " -----" + blackCaptures);
       int gameStatus = endCondition(redCaptures, blackCaptures, movesNoCaptures); 
       return gameStatus;
   }

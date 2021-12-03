@@ -14,7 +14,6 @@ public class Main {
     int posX = 0, posY = 0, newPosX = 0, newPosY = 0; //variables stores the old and new data for the moves the user wants
     String colour = "", piece = "";
     char[] userMoves = new char[4];
-    board.update();
       //while (checkmate condition)
     while (true) {//temporary 
         while (true) {
@@ -98,7 +97,8 @@ public class Main {
         else {
           System.out.println("Illegal input, try again. o_o ");
         }
-      }                               
+      }
   }
+  
 }
 
