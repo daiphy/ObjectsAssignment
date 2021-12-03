@@ -18,8 +18,8 @@ public class Board {
     public void changeBoard(int posX, int posY, char value) {
         this.grid[posX][posY] = value;
     }
-
-    public boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+//private method that checks for if a regular move (not capture can be made)
+    private boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
       
       // Checks if the move made is on the board
       if (newPosX < 1 || newPosX > 8 || newPosY < 1 || newPosY > 8) {
@@ -34,25 +34,21 @@ public class Board {
       }
       
       // Checks if the move made is forward (unless the piece is a royal)
-      if (type == "man") {
-        if (colour == "black") {
-          if (newPosY - posY != 1) {
+      //inverse for red and black, as red can only move from top to bottom and vice versa.
+      if (type.equals("man") && colour.equals("black") && newPosY - posY != 1) {
             return false;
-          }
-        }
-        else if (colour == "red") {
-          if (posY - newPosY != 1) {
-            return false;
-          }
-        }
       }
+      else if (type.equals("man") && colour.equals("red") && posY - newPosY != 1) {
+            return false;
+      }
+      
       
       // Checks if new position isn't already taken by another piece
 
       if (grid[newPosX][newPosY] != ' ') {
         return false;
       }
-      
+      //default return true.
       return true;
     }
     
@@ -113,7 +109,17 @@ public class Board {
       }
       return false;
     }
-    public void update() {
+    // the public method that will be called when a move is made, if both methods return false then the move is illegal
+//     public boolean checkMove(int posX, int posY, int newPosX, int newPosY, String colour, String type) {
+//       if (canMoveBeMade(posX, posY, newPosX, newPosY, colour, type) == false && 
+//           canCaptureBeMade(posX, posY, newPosX, newPosY, colour) == false) {
+//         return false;
+//       }
+//       else {
+//         return true;
+//       }
+//     }
+      public void update() {
         System.out.println("------------------------");
         for(int i = 0; i < this.grid.length; i++) {
             for (int j = 0; j < this.grid[0].length; j++) {

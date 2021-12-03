@@ -2,11 +2,11 @@
 
 # Test cases for piece moving: 
 
-### Regular moving:
+### Regular moving and piece input:
 
 1. Move pieces out of the board, from the left, right, up, top. Sample cases: Move from (0, 1) to (-1, 0)
       
- 	-> This should be illegal, and not return any runtime errors. 
+ 	-> This should be illegal, and not return any runtime errors. **Should be okay**
       
 2. Move pieces backward diagonally when they **aren't** a ascended piece and when they **are** a ascended piece. Ex: from (4, 4) to (3, 3)
       
@@ -15,7 +15,8 @@
 
 	-> ***TRY MOVING TO DIAGONAL EDGES, and make sure there are no array errors.***
       
- 	-> Should be free of errors.
+ 	-> Should be free of errors. **Should be okay**
+      
 4. Move pieces forward diagonally when the square has an enemy piece or friendly piece. 
 	
 4. Move pieces forward and backward(horizontally and vertically) Ex: from (2, 2) to (1, 2)
@@ -27,6 +28,11 @@
 	-> Should have no issues. 
 	
 ##### All of the cases should be tested with both Red and Black pieces.
+### Input from Console:
+
+1. Make sure something out of the format is still considered invalid and doesn't cause any bugs.
+2. No errors pop up when entering correct format
+3. Make sure the instructions are clear.
 
 ### Captures:
 
