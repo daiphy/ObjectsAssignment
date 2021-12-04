@@ -10,7 +10,13 @@ public class Board {
     int movesNoCaptures = 0;
     Piece piece = new Piece();
     private boolean isBlackTurn = true;
-    public Board() {
+    /**
+     * THE CONSTRUCTOR METHOD
+     * we create the new board here and add the pieces to the correct spots.
+     * 
+     */
+      public Board() {
+
       // Setting the pieces in the correct spots on board
       for (int row = 0; row < 8; row++) {
         for (int col = 0; col < 8; col++) {
@@ -31,11 +37,11 @@ public class Board {
         }
       }
     }
-    
-  
+
 /**
  * @author Daiphy Lee, Kevin Cao, Jack Moore
  * Description : calls on validation methods to check if it is a valid move||capture -> if it is valid then it moves the pieces and deletes jumped pieces (if it's capture)
+ * This method tries to make a move, and calls the canmovebemade and cancapturecanbemade method to verify if the pieces can capture. 
  * @param y1 row coord of the position user inputted to move from
  * @param x1 column coord of the position user inputted to move from
  * @param y2 row coord of the position user inputted to move to
@@ -91,6 +97,7 @@ public class Board {
   /**
    * @author Kevin Cao, Jack Moore
    * Description : Determines which player's turn
+   * Get whose turn it is via the priv isBlackTurn variable.
    * @return true if it is black pieces' turn
    * false if it is the red piece's turn
    */
@@ -108,7 +115,7 @@ public class Board {
    * Description : Determines the element on the board
    * @param posY row coord 
    * @param posX column coord
-   * @return the element on the board
+   * @return the char element in the specified cell on the board
    */
   public char getSquareId (int posY, int posX) {
     return this.grid[posY][posX];
@@ -125,6 +132,7 @@ public class Board {
   /**
    * @author Kevin Cao, James Zheng
    * Description : Prints Board and checks end conditions
+   * this method updates the grid, formats and prints the checkers grid to the screen.
    * @return gameStatus -> endConditions method
    */
   public int update() {
@@ -137,8 +145,8 @@ public class Board {
           }
           System.out.println(""); //newline
       }
-      System.out.println("-----  Pieces captured by red: " + this.blackCaptures + " -----");
-      int gameStatus = endCondition(); 
+      System.out.println("-----  Pieces captured by red: " + this.blackCaptures + " -----"); //shows number of black pieces captured
+      int gameStatus = endCondition(); // get the number from endcondition to return to main
       return gameStatus;
   }
 
@@ -151,11 +159,7 @@ public class Board {
    *         0 -> Continue
    */
   public int endCondition() {
-    /**This method checks whether any of the conditions below have been met to end the game
-     * - All pieces of one color have been captured
-     * - 10 moves were made without capturing any pieces
-     * It will return a 1 for a black victory, 2 for a red victory, 3 for a tie, and 0 if the game continues
-     */
+    
     if (this.redCaptures == 12) {
       return 1;
     }
