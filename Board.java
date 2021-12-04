@@ -74,10 +74,10 @@ public class Board {
           this.grid[y1][x1] = ' ';
           // royal ascension
           if( y2 == 0 && this.grid[y2][x2] == 'r'){
-            this.grid[x2][y2] = 'R';
+            this.grid[y2][x2] = 'R';
           }
           if( y2 == 7 && grid[y2][x2] == 'b'){
-            this.grid[x2][y2] = 'B';
+            this.grid[y2][x2] = 'B';
           }
           // removing the enemy piece when the player has legally jumped over it
           
