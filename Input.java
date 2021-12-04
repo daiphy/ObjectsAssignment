@@ -9,12 +9,11 @@ public class Input{
          * 
         */
         Scanner s=new Scanner(System.in);
-        boolean ask=true;
         String string="";
         do{//loop for x coord of piece
             System.out.print("Please enter the coordinates of your piece ");
             System.out.print("and then the coordinate you wish to move it to ");
-            System.out.println("in the format (x,y);(x,y)");
+            System.out.println("in the format (y,x);(newY,newX)");
             int f=0;
             //Current input should look something like (1,2);(3,4)
             string=s.nextLine();
@@ -45,9 +44,6 @@ public class Input{
             }
             
 //(1,1);(2,2)              
-            ask=placeholder(array);
-        }while(ask); //Loop will exit once the move is validated
-        s.close();
         return array;
     }
 

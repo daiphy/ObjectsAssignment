@@ -142,127 +142,108 @@ public class Board {
           }while(extraCaptures == true);
           return true;
         }
-      }
-       //base case
-       System.out.println("Sorry the move/capture is illegal. Please input another play. :/");
-       return false;
-         
-    }
-      private boolean canCaptureBeMade(int x1, int y1, int x2, int y2, int x3, int y3, String colour, String type) {
-
-        // kill can not be made if the second coords inputted are off board
-        if (x3 < 0 || x3 >= 8 || y3 < 0 || y3 >= 8){
-          return false;
-        }
-        // (x2,y2) has another piece there
-        if (grid[x3][y3] == 'r' || grid[x3][y3] == 'R' || grid[x3][y3] == 'B' ||grid[x3][y3] == 'B'){
-          return false;
-        }
-        if (type.equalsIgnoreCase("pawn")){ 
-          // only applies to red pieces
-          if (colour.equalsIgnoreCase("red")){
-            // piece can not move down (can only move up)
-            if ((grid[x1][y1] == 'r') && x3 > x1){
-              return false;
-            }
-            // no black pieces to jump over
-            if (grid[x2][y2] == 'b' || grid[x2][y2] == 'B'){
-              return false;
-            }
-            blackCaptures++;
-            movesNoCaptures = 0;
-            return true;
-            // capture = canCaptureBeMade(x3, y3, (x3+2), (y3+2), colour, type);
-          }
-          // only applies to black pieces
-          else{
-            // piece can not move up (can only move down)
-            if ((grid[x1][y1] == 'b') && x3 < x1){
-              return false;
-            }
-            // no red pieces to jump over
-            if (grid[x2][y2] != 'r' || grid[x2][y2] != 'R'){
-              return false;
-            }
-            redCaptures++;
-            movesNoCaptures = 0;
-            return true;
-            // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
-          }
-        }
-        else if(type.equalsIgnoreCase("royal")) {
-          // only applies to red pieces
-          if (colour.equalsIgnoreCase("red")){
-            if (grid[x2][y2] != 'b' || grid[x2][y2] != 'B'){
-              return false;
-            }
-            blackCaptures++;
-            movesNoCaptures = 0;
-            return true;
-            // capture = canCaptureBeMade(x3, y3, (x3+2), (y3+2), colour, type);
-          }
-        
-          // only applies to black pieces
-          else{
-            // no red pieces to jump over
-            if (grid[x2][y2] != 'r' || grid[x2][y2] != 'R'){
-              return false;
-            }
-            redCaptures++;
-            movesNoCaptures = 0;
-            return true;
-            // capture = canCaptureBeMade(newPosX, newPosY, (newPosX+2), (newPosY+2), colour, type);
-          }
-        }
+        //default case
+        System.out.println("Sorry the move/capture is illegal. Please input another play. :/");
         return false;
       }
-    
-    public boolean getTurn() {
-      if (isBlackTurn == true) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }
-    
-    public char getSquareId (int posX, int posY) {
-      return grid[posX][posY];
-    }
-    
-    public void changeTurn() {
-      isBlackTurn = !(isBlackTurn);
-    }
-    
       
-    
-    public void update() {
-        System.out.println("------------------------  " + redCaptures); //Shows the number of red pieces captured
-        for(int i = 0; i < this.grid.length; i++) {
-            for (int j = 0; j < this.grid[0].length; j++) {
-                System.out.print("[" + this.grid[i][j] + "]");
-            }
-            System.out.println(""); //newline
-        }
-        System.out.println("------------------------  " + blackCaptures);
-        int gameStatus = endCondition(redCaptures, blackCaptures, movesNoCaptures); 
-    }
 
-    public int endCondition(int redCaptures, int blackCaptures, int movesNoCaptures) {
-      /**This method checks whether any of the conditions below have been met to end the game
-       * - All pieces of one color have been captured
-       * - 10 moves were made without capturing any pieces
-       * It will return a 1 for a black victory, 2 for a red victory, 3 for a tie, and 0 if the game continues
-       */
-      if (redCaptures == 12){
-        return 1;
+  public void findForceCaptures() {
+    for (int i=0; i<grid.length; i++) {
+      for (int e=0; e<grid[i].length; e++) {
+        
+        char piece = grid[i][e];
+        System.out.println(piece);
+        
+        // Execeutes if the piece is red
+        if (piece == 'r' || piece == 'R') {
+
+          if (i + 2 <= 7 && e - 2 >= 0) {
+            char emptyPiece = grid[i + 2][e - 2];
+            char enemyPiece = grid[i + 1][e - 1];
+            if (emptyPiece == ' ') {
+              if (enemyPiece == 'b' || enemyPiece == 'B') {
+                System.out.println("Force take");
+              }
+            }
+          }
+          
+          if (i + 2 <= 7 && e + 2 <= 7) {
+            char emptyPiece = grid[i + 2][e + 2];
+            char enemyPiece = grid[i + 1][e + 1];
+            if (emptyPiece == ' ') {
+              if (enemyPiece == 'b' || enemyPiece == 'B') {
+                System.out.println("Force take");
+              }
+            }
+          }
+          
+          if (piece == 'R') {
+            
+            if (i - 2 >= 0 && e - 2 >= 0) {
+             
+            }
+            
+          }
+          
+
+        }
+        
+        // Execeutes if the piece is a regular black piece
+        else if (piece == 'b') {
+        
+        }
       }
-      if (blackCaptures == 12){
-        return 2;
-      }
-      if (movesNoCaptures == 10){
-        return 3;
-      }
-      return 0;
     }
+  }
+  
+  public boolean getTurn() {
+    if (this.isBlackTurn == true) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  
+  public char getSquareId (int posX, int posY) {
+    return this.grid[posX][posY];
+  }
+  
+  public void changeTurn() {
+    this.isBlackTurn = !(this.isBlackTurn);
+  }
+  
+  public int update() {
+      System.out.println("-----  Pieces captured by black: " + redCaptures + " -----"); //Shows the number of red pieces captured
+      System.out.println("   0  1  2  3  4  5  6  7");
+      for(int i = 0; i < this.grid.length; i++) {
+          System.out.print(i + " ");
+          for (int j = 0; j < this.grid[0].length; j++) {
+              System.out.print("[" + this.grid[i][j] + "]");
+          }
+          System.out.println(""); //newline
+      }
+      System.out.println("-----  Pieces captured by red: " + blackCaptures + " -----");
+      int gameStatus = endCondition(redCaptures, blackCaptures, movesNoCaptures); 
+      return gameStatus;
+  }
+
+  public int endCondition(int redCaptures, int blackCaptures, int movesNoCaptures) {
+    /**This method checks whether any of the conditions below have been met to end the game
+     * - All pieces of one color have been captured
+     * - 10 moves were made without capturing any pieces
+     * It will return a 1 for a black victory, 2 for a red victory, 3 for a tie, and 0 if the game continues
+     */
+    if (redCaptures == 12){
+      return 1;
+    }
+    if (blackCaptures == 12){
+      return 2;
+    }
+    if (movesNoCaptures == 10){
+      return 3;
+    }
+    return 0;
+  }
 }
