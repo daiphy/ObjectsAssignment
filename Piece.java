@@ -132,7 +132,8 @@ public class Piece {
       int middleY = (posY + newPosY) / 2;
 
       char piece = grid[posX][posY];
-      if (colour.equals("red")) {
+      System.out.println("Colour: " + colour + " is it black's turn: " + isBlackTurn);
+      if (colour.equals("red") == true) {
 
         if (isBlackTurn == true) {
           System.out.println("You cannot move enemy pieces on your turn! ");
