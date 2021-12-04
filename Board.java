@@ -35,14 +35,15 @@ public class Board {
     
   
 /**
- * 
- * @param y1
- * @param x1
- * @param y2
- * @param x2
- * @param player
- * @param type
- * @return
+ * This method tries to make a move, and calls the capture can be made method to verify if the pieces can capture. 
+ * If
+ * @param y1 og y-coordinate
+ * @param x1 og x-coordinate
+ * @param y2 new y-coordinate
+ * @param x2 new x-coordinate
+ * @param player player colour
+ * @param type piece, king or pawn.
+ * @return true false to see if you can make the specified move.
  */
   public boolean makeMove(int y1, int x1, int y2, int x2, String player, String type) {
         // condition if the move can be made or capture.  
