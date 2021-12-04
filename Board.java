@@ -11,12 +11,6 @@ public class Board {
     Piece piece = new Piece();
     private boolean isBlackTurn = true;
         public Board() {
-        //init constructor, temporairly all spaces, might add initial grid spaces later 
-        // for(int i = 0; i < this.grid.length; i++) {
-        //     for (int j = 0; j < this.grid[0].length; j++) {
-        //         this.grid[i][j] = ' '; //empty space as we are initalizing :)
-        //     }
-        // }
 
       // Setting the pieces in the correct spots on board
       for (int row = 0; row < 8; row++) {
@@ -39,13 +33,17 @@ public class Board {
       }
     }
     
-    //might add on to this, very rough way to change values
-    public void changeBoard(int posX, int posY, char value) {
-        this.grid[posX][posY] = value;
-    }
-
-    //private method that checks for if a regular move (not capture can be made)
-
+  
+/**
+ * 
+ * @param y1
+ * @param x1
+ * @param y2
+ * @param x2
+ * @param player
+ * @param type
+ * @return
+ */
   public boolean makeMove(int y1, int x1, int y2, int x2, String player, String type) {
         // condition if the move can be made or capture.  
         if (piece.canCaptureBeMade(y1, x1, y2, x2, player, this.grid, this.isBlackTurn) == true || piece.canMoveBeMade(y1, x1, y2, x2, player, type, this.grid, this.isBlackTurn) == true) {
@@ -133,7 +131,7 @@ public class Board {
     if (this.blackCaptures == 12) {
       return 2;
     }
-    if (this.movesNoCaptures == 50) {
+    if (this.movesNoCaptures == 15) {
       return 3;
     }
     return 0;
