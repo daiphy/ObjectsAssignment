@@ -34,7 +34,7 @@ public class Main {
             newPosX = Character.getNumericValue(userMoves[3]);
 
             //get the id using the method getSquareId
-            switch (board.getSquareId(posX, posY)) {
+            switch (board.getSquareId(posY, posX)) {
               case 'r':
                 colour = "red";
                 piece = "pawn";
@@ -56,25 +56,27 @@ public class Main {
                 piece = "";
                 break; //nothing on the square.
             }
-            //legal move, stop asking. 
+
+            System.out.println(colour);
+            //legal move, stop asking and change turns. 
             if (board.makeMove(posY, posX, newPosY, newPosX, colour, piece) == true) {
               board.changeTurn();
             }
           //if move is illegal, cycle back and ask another time
           
           gameStatus = board.update(); 
-            if (gameStatus != 0) {
-              if (gameStatus == 1) {
-                System.out.println("GG, black wins! :)");
-              }
-             //black victory
-              else if (gameStatus == 2) {
-                System.out.println("GG, red wins! :)");
-              } //red victory
+          if (gameStatus != 0) {
+            if (gameStatus == 1) {
+              System.out.println("GG, black wins! :)");
+            }
+            //black victory
+            else if (gameStatus == 2) {
+              System.out.println("GG, red wins! :)");
+            } //red victory
 
-              else { //game status 3, aka draw.
-                System.out.println("GG, draw (10 moves in a row with no captures)! :)");
-              }
+            else { //game status 3, aka draw.
+              System.out.println("GG, draw (10 moves in a row with no captures)! :)");
+            }
             break; //get out of the loop
           }
         }
