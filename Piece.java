@@ -23,24 +23,19 @@ public class Piece {
 
     }
 
-    /**
-     * Note: after the move is validated  and the loop exited
-     * I will grab the last 2 numbers in the array and update the piece object being moved with those numbers
-     * - James Z
-     */
-
-   
     //protected method that checks for if a regular move (not capture can be made)
     /**
-     * #ADD NOTE TO FIX REPETITIVE MODE
-     * @param posX
-     * @param posY
-     * @param newPosX
-     * @param newPosY
-     * @param colour
-     * @param type
-     * @param grid
-     * @return
+     * @author Oscar Law, Kevin Cao, Jack Moore, Daiphy Lee, James Zheng
+     * Description : Determines if the move is legal by checking if the coords entered are valid moves
+     * @param posX row coord of the position user inputted to move from
+     * @param posY column coord of the position user inputted to move from
+     * @param newPosX row coord of the position user inputted to move to
+     * @param newPosY column coord of the position user inputted to move to
+     * @param colour define which player colour the current user is
+     * @param type defines the type of checkers piece (pawn or royal)
+     * @param grid the 2d array checker board 
+     * @return true -> if it is legal move
+     *         false -> if the move is illegal
      */
     protected boolean canMoveBeMade(int posY, int posX, int newPosY, int newPosX, String colour, String type, char[][] grid, boolean isBlackTurn) {
     
@@ -72,7 +67,6 @@ public class Piece {
             return false;
           }
         }
-              
         
         else if (colour.equals("red")) {
           if (isBlackTurn == true) {
@@ -84,9 +78,7 @@ public class Piece {
             return false;
           } 
         }
-        
-        
-        
+   
         // Checks if new position isn't already taken by another piece
   
         if (grid[newPosY][newPosX] != ' ') {
@@ -98,6 +90,19 @@ public class Piece {
         return true;
       }
   
+    /**
+     * @author Daiphy Lee, Oscar Law, Kevin Cao
+     * Description : Determines if capture is legal by checking the coords entered and all illegal capture tries
+     * @param posX row coord of the position user inputted to move from
+     * @param posY column coord of the position user inputted to move from
+     * @param newPosX row coord of the position user inputted to move to
+     * @param newPosY column coord of the position user inputted to move to
+     * @param colour define which player colour the current user is
+     * @param grid the 2d array checker board 
+     * @param isBlackTurn the boolean to check which player's turn it is
+     * @return true -> if capture is legal
+     *         false -> if capture is illegal
+     */
     protected boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, char[][] grid, boolean isBlackTurn) {
       
       // Checks if the move made is on the board

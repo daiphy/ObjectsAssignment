@@ -10,8 +10,7 @@ public class Board {
     int movesNoCaptures = 0;
     Piece piece = new Piece();
     private boolean isBlackTurn = true;
-        public Board() {
-
+    public Board() {
       // Setting the pieces in the correct spots on board
       for (int row = 0; row < 8; row++) {
         for (int col = 0; col < 8; col++) {
@@ -35,14 +34,16 @@ public class Board {
     
   
 /**
- * 
- * @param y1
- * @param x1
- * @param y2
- * @param x2
- * @param player
- * @param type
- * @return
+ * @author Daiphy Lee, Kevin Cao, Jack Moore
+ * Description : calls on validation methods to check if it is a valid move||capture -> if it is valid then it moves the pieces and deletes jumped pieces (if it's capture)
+ * @param y1 row coord of the position user inputted to move from
+ * @param x1 column coord of the position user inputted to move from
+ * @param y2 row coord of the position user inputted to move to
+ * @param x2 column coord of the position user inputted to move to
+ * @param player define which player colour the current user is
+ * @param type defines the type of checkers piece (pawn or royal)
+ * @return true if move || capture is legal and changes the pieces on the board 
+ *         false if move || capture is illegal
  */
   public boolean makeMove(int y1, int x1, int y2, int x2, String player, String type) {
         // condition if the move can be made or capture.  
@@ -87,6 +88,12 @@ public class Board {
         return false;
       }
   
+  /**
+   * @author Kevin Cao, Jack Moore
+   * Description : Determines which player's turn
+   * @return true if it is black pieces' turn
+   * false if it is the red piece's turn
+   */
   public boolean getTurn() {
     if (this.isBlackTurn == true) {
       return true;
@@ -96,14 +103,30 @@ public class Board {
     }
   }
   
-  public char getSquareId (int posX, int posY) {
-    return this.grid[posX][posY];
+  /**
+   * @author Kevin Cao
+   * Description : Determines the element on the board
+   * @param posY row coord 
+   * @param posX column coord
+   * @return the element on the board
+   */
+  public char getSquareId (int posY, int posX) {
+    return this.grid[posY][posX];
   }
   
+  /**
+   * @author Kevin Cao, Jack Moore
+   * Description : Switches the player turn
+   */
   public void changeTurn() {
     this.isBlackTurn = !(this.isBlackTurn);
   }
   
+  /**
+   * @author Kevin Cao, James Zheng
+   * Description : Prints Board and checks end conditions
+   * @return gameStatus -> endConditions method
+   */
   public int update() {
       System.out.println("-----  Pieces captured by black: " + this.redCaptures + " -----"); //Shows the number of red pieces captured
       System.out.println("   0  1  2  3  4  5  6  7");
@@ -119,6 +142,14 @@ public class Board {
       return gameStatus;
   }
 
+  /**
+   * @author James Zheng
+   * Description : Determines the winner of the game (or if it's a stale)
+   * @return 1 -> Black Wins
+   *         2 -> Red Wins
+   *         3 -> Draw || Stalemate || Tied
+   *         0 -> Continue
+   */
   public int endCondition() {
     /**This method checks whether any of the conditions below have been met to end the game
      * - All pieces of one color have been captured
