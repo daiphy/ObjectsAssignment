@@ -10,7 +10,7 @@ public class Input{
         */
         Scanner s=new Scanner(System.in);
         String string="";
-        do{//loop for x coord of piece
+        //loop for x coord of piece
             System.out.print("Please enter the coordinates of your piece ");
             System.out.print("and then the coordinate you wish to move it to ");
             System.out.println("in the format (y,x);(newY,newX)");
