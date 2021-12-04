@@ -10,7 +10,12 @@ public class Board {
     int movesNoCaptures = 0;
     Piece piece = new Piece();
     private boolean isBlackTurn = true;
-        public Board() {
+    /**
+     * THE CONSTRUCTOR METHOD
+     * we create the new board here and add the pieces to the correct spots.
+     * 
+     */
+      public Board() {
 
       // Setting the pieces in the correct spots on board
       for (int row = 0; row < 8; row++) {
@@ -32,11 +37,11 @@ public class Board {
         }
       }
     }
-    
-  
+
 /**
- * This method tries to make a move, and calls the capture can be made method to verify if the pieces can capture. 
+ * This method tries to make a move, and calls the canmovebemade and cancapturecanbemade method to verify if the pieces can capture. 
  * If
+ * @author Kevin Cao, Daiphy L, Jack M.
  * @param y1 og y-coordinate
  * @param x1 og x-coordinate
  * @param y2 new y-coordinate
@@ -87,7 +92,12 @@ public class Board {
         System.out.println("Sorry the move/capture is illegal. Please input another play. :/");
         return false;
       }
-  
+  /**
+   * @author Kevin Cao
+   * Get whose turn it is via the priv isBlackTurn variable.
+   * 
+   * @return
+   */
   public boolean getTurn() {
     if (this.isBlackTurn == true) {
       return true;
@@ -97,14 +107,28 @@ public class Board {
     }
   }
   
+  /**
+   * Gets the id of the specified cell, as in colour and type.
+   * @author Kevin C.
+   * @param posX
+   * @param posY
+   * @return the char in the specified cell
+   */
   public char getSquareId (int posX, int posY) {
     return this.grid[posX][posY];
   }
   
+  /**
+   * this method changes turns for the private blackturn bool.
+   */
   public void changeTurn() {
     this.isBlackTurn = !(this.isBlackTurn);
   }
   
+  /**
+   * this method updates the grid, formats and prints the checkers grid to the screen.
+   * @return
+   */
   public int update() {
       System.out.println("-----  Pieces captured by black: " + this.redCaptures + " -----"); //Shows the number of red pieces captured
       System.out.println("   0  1  2  3  4  5  6  7");
@@ -115,17 +139,21 @@ public class Board {
           }
           System.out.println(""); //newline
       }
-      System.out.println("-----  Pieces captured by red: " + this.blackCaptures + " -----");
-      int gameStatus = endCondition(); 
+      System.out.println("-----  Pieces captured by red: " + this.blackCaptures + " -----"); //shows number of black pieces captured
+      int gameStatus = endCondition(); // get the number from endcondition to return to main
       return gameStatus;
   }
-
-  public int endCondition() {
-    /**This method checks whether any of the conditions below have been met to end the game
+/**
+ * /**This method checks whether any of the conditions below have been met to end the game
      * - All pieces of one color have been captured
      * - 10 moves were made without capturing any pieces
      * It will return a 1 for a black victory, 2 for a red victory, 3 for a tie, and 0 if the game continues
-     */
+     
+     We could have made this part of update method, but we chose to keep it more clean and separate.
+ * @return the number which the game will check for end conditions.
+ */
+  public int endCondition() {
+    
     if (this.redCaptures == 12) {
       return 1;
     }
