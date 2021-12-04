@@ -57,14 +57,15 @@ public class Board {
             System.out.println(eliminatedCol + " " + eliminatedRow);
             if (player == "red") {
               //the number of pieces that have been captured
-              blackCaptures++;
+              this.blackCaptures++;
             }
 
             else {
-              redCaptures++;
+              this.redCaptures++;
             }
 
             this.grid[eliminatedCol][eliminatedRow] = ' ';
+            this.movesNoCaptures = 0;
           }
 
           else {
@@ -87,56 +88,6 @@ public class Board {
         System.out.println("Sorry the move/capture is illegal. Please input another play. :/");
         return false;
       }
-      
-
-  public void findForceCaptures() {
-    for (int i=0; i<grid.length; i++) {
-      for (int e=0; e<grid[i].length; e++) {
-        
-        char piece = grid[i][e];
-        System.out.println(piece);
-        
-        // Execeutes if the piece is red
-        if (piece == 'r' || piece == 'R') {
-
-          if (i + 2 <= 7 && e - 2 >= 0) {
-            char emptyPiece = grid[i + 2][e - 2];
-            char enemyPiece = grid[i + 1][e - 1];
-            if (emptyPiece == ' ') {
-              if (enemyPiece == 'b' || enemyPiece == 'B') {
-                System.out.println("Force take");
-              }
-            }
-          }
-          
-          if (i + 2 <= 7 && e + 2 <= 7) {
-            char emptyPiece = grid[i + 2][e + 2];
-            char enemyPiece = grid[i + 1][e + 1];
-            if (emptyPiece == ' ') {
-              if (enemyPiece == 'b' || enemyPiece == 'B') {
-                System.out.println("Force take");
-              }
-            }
-          }
-          
-          if (piece == 'R') {
-            
-            if (i - 2 >= 0 && e - 2 >= 0) {
-             
-            }
-            
-          }
-          
-
-        }
-        
-        // Execeutes if the piece is a regular black piece
-        else if (piece == 'b') {
-        
-        }
-      }
-    }
-  }
   
   public boolean getTurn() {
     if (this.isBlackTurn == true) {
@@ -156,7 +107,7 @@ public class Board {
   }
   
   public int update() {
-      System.out.println("-----  Pieces captured by black: " + redCaptures + " -----"); //Shows the number of red pieces captured
+      System.out.println("-----  Pieces captured by black: " + this.redCaptures + " -----"); //Shows the number of red pieces captured
       System.out.println("   0  1  2  3  4  5  6  7");
       for(int i = 0; i < this.grid.length; i++) {
           System.out.print(i + " ");
@@ -165,24 +116,24 @@ public class Board {
           }
           System.out.println(""); //newline
       }
-      System.out.println("-----  Pieces captured by red: " + blackCaptures + " -----");
-      int gameStatus = endCondition(redCaptures, blackCaptures, movesNoCaptures); 
+      System.out.println("-----  Pieces captured by red: " + this.blackCaptures + " -----");
+      int gameStatus = endCondition(); 
       return gameStatus;
   }
 
-  public int endCondition(int redCaptures, int blackCaptures, int movesNoCaptures) {
+  public int endCondition() {
     /**This method checks whether any of the conditions below have been met to end the game
      * - All pieces of one color have been captured
      * - 10 moves were made without capturing any pieces
      * It will return a 1 for a black victory, 2 for a red victory, 3 for a tie, and 0 if the game continues
      */
-    if (redCaptures == 12){
+    if (this.redCaptures == 12) {
       return 1;
     }
-    if (blackCaptures == 12){
+    if (this.blackCaptures == 12) {
       return 2;
     }
-    if (movesNoCaptures == 10){
+    if (this.movesNoCaptures == 50) {
       return 3;
     }
     return 0;

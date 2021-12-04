@@ -1,15 +1,10 @@
 /**
  * Filler main class used to test out the methods.
  */
-
-import java.util.Scanner;
-
 public class Main {
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
       //init new board class :))
     Board board = new Board();
-    String userChoice = "";
     int gameStatus = 0; //the game status where we check if the game continues, ends in a win for red or black, or draw.
     int posX = 0, posY = 0, newPosX = 0, newPosY = 0; //variables stores the old and new data for the moves the user wants
     String colour = "", piece = "";
@@ -80,26 +75,10 @@ public class Main {
             break; //get out of the loop
           }
         }
-        
-
-        //ask if they want to play again
-        System.out.print("Do you want to play again? (y/n) ");
-        userChoice = scanner.nextLine();
-
-        if (userChoice.equalsIgnoreCase("y")) {
-          if (board.getTurn() == false) {//we need to reset so that black starts again
-            board.changeTurn(); //swap turns
-          }
-        }
-
-        else if (userChoice.equalsIgnoreCase("n")) {
-          System.out.println("Thank you for playing :D ");
-          break;
-        }
+        System.out.println("Thank you for playing :D ");
+        break;
 //illegal input, reloop.
-        else {
-          System.out.println("Illegal input, try again. o_o ");
-        }
+
       }
   }
   
