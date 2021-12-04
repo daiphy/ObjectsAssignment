@@ -13,7 +13,7 @@ public class Input {
         String string="";
             System.out.print("Please enter the coordinates of your piece ");
             System.out.print("and then the coordinate you wish to move it to ");
-            System.out.println("in the format (x,y);(x,y)");
+            System.out.println("in the format (y,x);(newY,newX)");
             int f=0;
             //Current input should look something like (1, 2);(3, 4)
             string=s.nextLine();

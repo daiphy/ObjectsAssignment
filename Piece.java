@@ -53,7 +53,7 @@ public class Piece {
         int xDifference = Math.abs(newPosX - posX);
         int yDifference = Math.abs(newPosY - posY);
         if (xDifference != 1 || yDifference != 1) {
-          System.out.println("not diagonal");
+          //System.out.println("not diagonal");
           return false;
         }
         
@@ -71,9 +71,9 @@ public class Piece {
         
         // Checks if new position isn't already taken by another piece
   
-        if (grid[newPosY][newPosX] != ' ') {
+        if (grid[newPosX][newPosY] != ' ') {
           System.out.println("space is already taken!");
-          System.out.println(grid[newPosY][newPosX]);
+          System.out.println(grid[newPosX][newPosY]);
           return false;
         }
         //default return true.
@@ -104,7 +104,7 @@ public class Piece {
       int xDifference = Math.abs(posX - newPosX);
       int yDifference = Math.abs(posY - newPosY);
       if (xDifference != 2 || yDifference != 2) {
-        System.out.println("2 part difference");
+        //System.out.println("2 part difference");
         return false;
       }
       
