@@ -3,42 +3,48 @@
  * the methods to update and display the basic grid.
  */
 public class Board {
-  //the grid is private
-  private char[][] grid = new char[8][8];
-  int redCaptures = 0;
-  int blackCaptures = 0;
-  int movesNoCaptures = 0;
-  Piece piece = new Piece();
-  private boolean isBlackTurn = true;
-  
-  public Board() {
-    //init constructor, temporairly all spaces, might add initial grid spaces later 
-    // Setting the pieces in the correct spots on board
-    for (int row = 0; row < 8; row++) {
-      for (int col = 0; col < 8; col++) {
-          // conds if the remainder of the row and col are equal ie 1,1 or 1,3 
-          if ( row % 2 == col % 2 ) {
-              // its black if the row is at the top (less than 3)
-              if (row < 3) {
-                grid[row][col] = 'b';
-              // its red if the row is at the top (more than 4)
-              } else if (row > 4) {
-                grid[row][col] = 'r';
-              } else {
+    //the grid is private
+    private char[][] grid = new char[8][8];
+    int redCaptures = 0;
+    int blackCaptures = 0;
+    int movesNoCaptures = 0;
+    Piece piece = new Piece();
+    private boolean isBlackTurn = true;
+        public Board() {
+        //init constructor, temporairly all spaces, might add initial grid spaces later 
+        // for(int i = 0; i < this.grid.length; i++) {
+        //     for (int j = 0; j < this.grid[0].length; j++) {
+        //         this.grid[i][j] = ' '; //empty space as we are initalizing :)
+        //     }
+        // }
+
+      // Setting the pieces in the correct spots on board
+      for (int row = 0; row < 8; row++) {
+        for (int col = 0; col < 8; col++) {
+            // conds if the remainder of the row and col are equal ie 1,1 or 1,3 
+            if ( row % 2 == col % 2 ) {
+                // its black if the row is at the top (less than 3)
+                if (row < 3) {
+                  grid[row][col] = 'b';
+                // its red if the row is at the top (more than 4)
+                } else if (row > 4) {
+                  grid[row][col] = 'r';
+                } else {
+                  grid[row][col] = ' '; // empty spaces
+                }
+            } else {
                 grid[row][col] = ' '; // empty spaces
-              }
-          } else {
-              grid[row][col] = ' '; // empty spaces
-          }
+            }
+        }
       }
     }
-  }
-  
-  //might add on to this, very rough way to change values
-  public void changeBoard(int posX, int posY, char value) {
-      this.grid[posX][posY] = value;
+    
+    //might add on to this, very rough way to change values
+    public void changeBoard(int posX, int posY, char value) {
+        this.grid[posX][posY] = value;
+    }
 
-  }
+    //private method that checks for if a regular move (not capture can be made)
 
   public boolean makeMove(int y1, int x1, int y2, int x2, String player, String type) {
         // condition if the move can be made or capture.  
@@ -59,6 +65,10 @@ public class Board {
             }
 
             this.grid[eliminatedCol][eliminatedRow] = ' ';
+          }
+
+          else {
+            this.movesNoCaptures++; //a regular move performed, add to the counter.
           }
           this.grid[y2][x2] = this.grid[y1][x1];
           this.grid[y1][x1] = ' ';
