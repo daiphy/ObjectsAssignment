@@ -40,28 +40,37 @@ public class Board {
 
   }
 
-  public boolean makeMove(int x1, int y1, int x2, int y2, String player, String type){
-    System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
-    System.out.println(this.getSquareId(x2, y2));
+  public boolean makeMove(int y1, int x1, int y2, int x2, String player, String type) {
         // condition if the move can be made or capture.  
-        if (piece.canCaptureBeMade(x1, y1, x2, y2, player, this.grid) == true || piece.canMoveBeMade(x1, y1, x2, y2, player, type, this.grid) == true) {
-          this.grid[x2][y2] = this.grid[x1][y1];
-          this.grid[x1][y1] = ' ';
-          // royal ascension
-          if( x2 == 0 && this.grid[x2][y2] == 'r'){
-            this.grid[x2][y2] = 'R';
-          }
-          if( x2 == 7 && grid[x2][y2] == 'b'){
-            this.grid[x2][y2] = 'B';
-          }
-          // removing the enemy piece when the player has legally jumped over it
-          if (piece.canCaptureBeMade(x1, y1, x2, y2, player, grid)){
+        if (piece.canCaptureBeMade(y1, x1, y2, x2, player, this.grid, this.isBlackTurn) == true || piece.canMoveBeMade(y1, x1, y2, x2, player, type, this.grid, this.isBlackTurn) == true) {
+          if (piece.canCaptureBeMade(y1, x1, y2, x2, player, this.grid, this.isBlackTurn) == true) {
             // row of the piece that needs to be eliminated
             int eliminatedRow = (x1 + x2) / 2;
             // column of the piece that needs to be eliminated
             int eliminatedCol = (y1 + y2) / 2;
-            grid[eliminatedRow][eliminatedCol] = ' ';
+            System.out.println(eliminatedCol + " " + eliminatedRow);
+            if (player == "red") {
+              //the number of pieces that have been captured
+              blackCaptures++;
+            }
+
+            else {
+              redCaptures++;
+            }
+
+            this.grid[eliminatedCol][eliminatedRow] = ' ';
           }
+          this.grid[y2][x2] = this.grid[y1][x1];
+          this.grid[y1][x1] = ' ';
+          // royal ascension
+          if( y2 == 0 && this.grid[y2][x2] == 'r'){
+            this.grid[x2][y2] = 'R';
+          }
+          if( y2 == 7 && grid[y2][x2] == 'b'){
+            this.grid[x2][y2] = 'B';
+          }
+          // removing the enemy piece when the player has legally jumped over it
+          
           return true;
         }
         //default case

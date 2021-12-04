@@ -42,7 +42,7 @@ public class Piece {
      * @param grid
      * @return
      */
-    protected boolean canMoveBeMade(int posX, int posY, int newPosX, int newPosY, String colour, String type, char[][] grid) {
+    protected boolean canMoveBeMade(int posY, int posX, int newPosY, int newPosX, String colour, String type, char[][] grid, boolean isBlackTurn) {
     
         // Checks if the move made is on the board
         if (newPosX < 0 || newPosX > 7 || newPosY < 0 || newPosY > 7) {
@@ -57,21 +57,39 @@ public class Piece {
           return false;
         }
         
-        // Checks if the move made is forward (unless the piece is a royal)
         //inverse for red and black, as red can only move from top to bottom and vice versa.
-        if (type.equals("pawn") && colour.equals("black") && (newPosY - posY != 1)) {
-              System.out.println("regular pieces cannot move backwards! ");
-              return false;
+        if (colour.equals("black")) {
+          //cannot move if you are moving an enemy piece 
+          if (isBlackTurn == false) {
+            System.out.println("You cannot move an enemy piece on your turn! ");
+            return false;
+          }
+          // Checks if the move made is forward (unless the piece is a royal)
+
+          if (type.equals("pawn") && (newPosY < posY)) {
+            System.out.println("regular pieces cannot move backwards! ");
+            System.out.println(newPosY + " " + posY);
+            return false;
+          }
         }
-        else if (type.equals("pawn") && colour.equals("red") && (newPosY - posY != -1)) {
-              System.out.println("regular pieces cannot move backwards! ");
-              return false;
+              
+        
+        else if (colour.equals("red")) {
+          if (isBlackTurn == true) {
+            System.out.println("You cannot move an enemy piece on your turn! ");
+            return false;
+          }
+          if (type.equals("pawn") && (newPosY > posY)) {
+            System.out.println("regular pieces cannot move backwards! ");
+            return false;
+          } 
         }
+        
         
         
         // Checks if new position isn't already taken by another piece
   
-        if (grid[newPosX][newPosY] != ' ') {
+        if (grid[newPosY][newPosX] != ' ') {
           System.out.println("space is already taken!");
           System.out.println(grid[newPosX][newPosY]);
           return false;
@@ -80,7 +98,7 @@ public class Piece {
         return true;
       }
   
-    protected boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, char[][] grid) {
+    protected boolean canCaptureBeMade(int posX, int posY, int newPosX, int newPosY, String colour, char[][] grid, boolean isBlackTurn) {
       
       // Checks if the move made is on the board
       if (newPosX < 0 || newPosX > 7 || newPosY < 0 || newPosY > 7) {
@@ -90,7 +108,8 @@ public class Piece {
       
       // checks if there's an empty space at the current position
       if (grid[posX][posY] == ' ') {
-        System.out.println("no piece at chosen position! ");
+        //System.out.println(grid[posX][posY]);
+        //System.out.println("no piece at chosen position! ");
         return false;
       }
       
@@ -114,8 +133,14 @@ public class Piece {
 
       char piece = grid[posX][posY];
       if (colour.equals("red")) {
+
+        if (isBlackTurn == true) {
+          System.out.println("You cannot move enemy pieces on your turn! ");
+          return false;
+        }
         
         char middlePiece = grid[middleX][middleY];
+
 
         if (middlePiece == 'r' || middlePiece == 'R') {
           System.out.println("cannot capture your own piece! ");
@@ -133,6 +158,10 @@ public class Piece {
 
       else { //black pieces
         
+        if (isBlackTurn == false) {
+          System.out.println("You cannot move enemy pieces on your turn! ");
+          return false;
+        }
         char middlePiece = grid[middleX][middleY];
 
         if (middlePiece == 'b' || middlePiece == 'B') {

@@ -28,10 +28,10 @@ public class Main {
             
             userMoves = Input.inputMethod(userMoves);
             
-            posX = Character.getNumericValue(userMoves[0]);
-            posY = Character.getNumericValue(userMoves[1]);
-            newPosX = Character.getNumericValue(userMoves[2]);
-            newPosY = Character.getNumericValue(userMoves[3]);
+            posY = Character.getNumericValue(userMoves[0]);
+            posX = Character.getNumericValue(userMoves[1]);
+            newPosY = Character.getNumericValue(userMoves[2]);
+            newPosX = Character.getNumericValue(userMoves[3]);
 
             //get the id using the method getSquareId
             switch (board.getSquareId(posX, posY)) {
@@ -57,7 +57,7 @@ public class Main {
                 break; //nothing on the square.
             }
             //legal move, stop asking. 
-            if (board.makeMove(posX, posY, newPosX, newPosY, colour, piece) == true) {
+            if (board.makeMove(posY, posX, newPosY, newPosX, colour, piece) == true) {
               board.changeTurn();
             }
           //if move is illegal, cycle back and ask another time
